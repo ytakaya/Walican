@@ -9,13 +9,9 @@ const config = {
 };
 const client = new line.Client(config);
 
+const help = require('./src/help/index');
+
 express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engin', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/g/', (req, res) => res.json({method: "こんにちは、getさん"}))
-  .post('/', (req, res) => res.status(200).end())
   .post('/hook/', line.middleware(config) ,(req, res) => lineBot(req, res))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
@@ -45,6 +41,9 @@ function sendMessageToUser(ev) {
 
 async function echoman(ev) {
   const pro = await client.getProfile(ev.source.userId);
+  if (ev.message.text == '/help') {
+    return help.HelpMessage(client, ev);
+  }
   console.log(ev.source.userId);
   console.log(ev.source.groupId);
   // return client.replyMessage(ev.replyToken, {
