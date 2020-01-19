@@ -12,7 +12,8 @@ const config = {
 const client = new line.Client(config);
 const lineBot = require('./routes/hook');
 
-const help = require('./src/help/index');
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 // app.use("/borrow/", require("./routes/borrow.js"));
 app.use("/hook", require("./routes/hook.js"));

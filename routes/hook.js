@@ -6,6 +6,8 @@ const config = {
 };
 const client = new line.Client(config);
 
+const help = require('../src/help/index');
+
 router.post('/', line.middleware(config), (req, res) => {
   res.status(200).end();
   const events = req.body.events;
