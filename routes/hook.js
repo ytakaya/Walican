@@ -47,7 +47,7 @@ const box = {
         "action": {
           "type": "uri",
           "label": "割り勘",
-          "uri": "https://c06164a6.ngrok.io/dutch/?payId="
+          "uri": "https://c06164a6.ngrok.io/dutch?payId=fjalegihaigh"
         }
       },
       {
