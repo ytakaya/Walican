@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
-const path = require('path');
+const app = express();
+const http = require("http").Server(app);
 const PORT = 5000;
 const line = require('@line/bot-sdk');
 const config = {
@@ -8,46 +9,14 @@ const config = {
   channelSecret: process.env.SECRET_KEY
 };
 const client = new line.Client(config);
+const lineBot = require('./routes/hook');
 
 const help = require('./src/help/index');
 
-express()
-  .post('/hook/', line.middleware(config) ,(req, res) => lineBot(req, res))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+// app.use("/borrow/", require("./routes/borrow.js"));
+// app.use("/dutch/", require("./routes/dutch.js"));
+app.use("/hook", require("./routes/hook.js"));
 
-function lineBot(req, res) {
-  res.status(200).end();
-  const events = req.body.events;
-  const promises = [];
-  for (let i = 0, l = events.length; i < l; i++) {
-    const ev = events[i];
-    if (ev.source.groupId == null) {
-      sendMessageToUser(ev);
-      return;
-    }
-    promises.push(
-      echoman(ev)
-    );
-  }
-  Promise.all(promises).then(console.log("pass"));
-}
-
-function sendMessageToUser(ev) {
-  return client.replyMessage(ev.replyToken, {
-    type: "text",
-    text: `グループに招待して使ってください`
-  })
-}
-
-async function echoman(ev) {
-  const pro = await client.getProfile(ev.source.userId);
-  if (ev.message.text == '/help') {
-    return help.HelpMessage(client, ev);
-  }
-  console.log(ev.source.userId);
-  console.log(ev.source.groupId);
-  // return client.replyMessage(ev.replyToken, {
-  //   type: "text",
-  //   text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
-  // })
-}
+http.listen(PORT, () => {
+  console.log("server listening. Port:" + PORT);
+});
