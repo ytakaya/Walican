@@ -19,23 +19,36 @@ express()
   .post('/hook/', line.middleware(config) ,(req, res) => lineBot(req, res))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-  function lineBot(req, res) {
-    res.status(200).end();
-    const events = req.body.events;
-    const promises = [];
-    for (let i = 0, l = events.length; i < l; i++) {
-      const ev = events[i];
-      promises.push(
-        echoman(ev)
-      );
+function lineBot(req, res) {
+  res.status(200).end();
+  const events = req.body.events;
+  const promises = [];
+  for (let i = 0, l = events.length; i < l; i++) {
+    const ev = events[i];
+    if (ev.source.groupId == null) {
+      sendMessageToUser(ev);
+      return;
     }
-    Promise.all(promises).then(console.log("pass"));
+    promises.push(
+      echoman(ev)
+    );
   }
+  Promise.all(promises).then(console.log("pass"));
+}
 
-  async function echoman(ev) {
-    const pro = await client.getProfile(ev.source.userId);
-    return client.replyMessage(ev.replyToken, {
-      type: "text",
-      text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
-    })
-  }
+function sendMessageToUser(ev) {
+  return client.replyMessage(ev.replyToken, {
+    type: "text",
+    text: `グループに招待して使ってください`
+  })
+}
+
+async function echoman(ev) {
+  const pro = await client.getProfile(ev.source.userId);
+  console.log(ev.source.userId);
+  console.log(ev.source.groupId);
+  // return client.replyMessage(ev.replyToken, {
+  //   type: "text",
+  //   text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+  // })
+}
