@@ -16,12 +16,11 @@ router.post('/', line.middleware(config), (req, res) => {
       sendMessageToUser(ev);
       return;
     }
-    // promises.push(
-    //   echoman(ev)
-    // );
-    echoman(ev);
+    promises.push(
+      getCommand(ev)
+    );
   }
-  // Promise.all(promises).then(console.log("pass"));
+  Promise.all(promises).then(console.log("pass"));
 });
 
 function sendMessageToUser(ev) {
@@ -64,11 +63,14 @@ const box = {
   }
 };
 
-async function echoman(ev) {
+async function getCommand(ev) {
   const pro = await client.getProfile(ev.source.userId);
   console.log(ev.message.text);
   if (ev.message.text == '/help') {
     return help.HelpMessage(client, ev);
+  }
+  else if (ev.message.text == '/attend') {
+    console.log("attend");
   }
   return client.replyMessage(ev.replyToken, {
     type: "flex",
