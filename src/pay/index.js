@@ -11,6 +11,8 @@ const insertPayments = function(parent_user, group_id, payment_id, replyToken) {
         replyToken: replyToken,
         group_id: group_id,
         parent: parent_user,
+        amount: 0,
+        children: {},
         status: "pending",
       }
     ).catch(() => {

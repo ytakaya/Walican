@@ -54,6 +54,21 @@ const getUsersByUserIds = async (user_ids) => {
   return Promise.all(promises);
 }
 
+function updatePayments(payId, children, amount) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("payments").updateOne({
+        payments_id: payId
+      }, {
+        $set: {children: children, amount: amount, status: "auth_pending"}
+      }).then(() => {
+        client.close();
+      })
+    })
+  })
+}
+
 
 router.get("/", (req, res) => {
   const payId = url.parse(req.url, true).query.payId;
@@ -73,7 +88,11 @@ router.get("/", (req, res) => {
 
 router.post("/regist", (req, res) => {
   //エラーのリダイレクト処理いれる
-  console.log(req.body);
+  const children = {}
+  req.body.target_users.forEach(target_user => {
+    children[target_user] = false;
+  })
+  updatePayments(req.body.payId, children, req.body.amount);
 })
 
 module.exports = router;
