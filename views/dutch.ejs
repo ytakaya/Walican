@@ -15,10 +15,12 @@
       <label>割り勘する人</label>
       <% users.forEach((user) => { %>
         <% if (user.id == parent) { %>
-          <input type="checkbox"" name="target_users" disabled="disabled" checked><%= user.name %>
+          <input type="checkbox"" name="target_users" disabled="disabled" checked>
         <% } else { %>
-          <input type="checkbox"" name="target_users"><%= user.name %>
+          <input type="checkbox"" name="target_users">
         <% } %>
+        <img src="<%= user.img %>" alt="">
+        <p><%= user.name %></p>
       <% }); %>
     </div>
   </form>
