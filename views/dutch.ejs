@@ -12,6 +12,11 @@
       <input type="text" name="name" value="<%= payId %>" readonly>
     </div>
     <div>
+      <% users.forEach((user) => { %>
+        <p><%= user %></p>
+      <% }); %>
+    </div>
+    <div>
       <label>割り勘する人</label>
       <input type="radio" name="users">ユーザー１
       <img src='' alt="">
