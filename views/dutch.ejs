@@ -12,14 +12,14 @@
       <input type="text" name="name" value="<%= payId %>" readonly>
     </div>
     <div>
-      <% users.forEach((user) => { %>
-        <p><%= user %></p>
-      <% }); %>
-    </div>
-    <div>
       <label>割り勘する人</label>
-      <input type="radio" name="users">ユーザー１
-      <img src='' alt="">
+      <% users.forEach((user) => { %>
+        <% if (user.id == parent) { %>
+          <input type="checkbox"" name="target_users" disabled="disabled" checked><%= user.name %>
+        <% } else { %>
+          <input type="checkbox"" name="target_users"><%= user.name %>
+        <% } %>
+      <% }); %>
     </div>
   </form>
 </body>

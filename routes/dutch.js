@@ -13,7 +13,11 @@ function getUserIdByPayId(pay_id) {
         db.collection("groups").findOne({
           group_id: payment.group_id,
         }).then((group) => {
-          resolve(group.users)
+          const res = {
+            parent: payment.parent,
+            user_ids: group.users,
+          }
+          resolve(res);
         })
       }).catch((error) => {
         throw error;
@@ -53,15 +57,16 @@ const getUsersByUserIds = async (user_ids) => {
 
 router.get("/", (req, res) => {
   const payId = url.parse(req.url, true).query.payId;
-  getUserIdByPayId(payId).then((user_ids) => {
+  getUserIdByPayId(payId).then((payment) => {
+    const {parent, user_ids} = payment;
     getUsersByUserIds(user_ids).then((users) => {
-      console.log(users);
+      const doc = {
+        payId: payId,
+        users: users,
+        parent: parent,
+      }
+      res.render("../views/dutch.ejs", doc);
     })
-    // const doc = {
-    //   payId: payId,
-    //   users: users,
-    // }
-    // res.render("../views/dutch.ejs", doc);
   })
 });
 
