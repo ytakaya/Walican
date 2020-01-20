@@ -18,11 +18,16 @@ router.post('/', line.middleware(config), (req, res) => {
       sendMessageToUser(ev);
       return;
     }
-    promises.push(
-      getCommand(ev)
-    );
+  //   promises.push(
+  //     getCommand(ev)
+  //   );
+
+    getCommand(ev)
+      .catch(err => {
+        console.log(err);
+      })
   }
-  Promise.all(promises).then(console.log("pass"));
+  // Promise.all(promises).then(console.log("pass"));
 });
 
 function sendMessageToUser(ev) {
@@ -65,6 +70,9 @@ const box = {
   }
 };
 
+const generateQuestionButton = require('../src/utils/generateQuestionButton');
+const questionButton = generateQuestionButton();
+
 async function getCommand(ev) {
   const pro = await client.getProfile(ev.source.userId);
   console.log(ev.message.text);
@@ -77,7 +85,7 @@ async function getCommand(ev) {
   return client.replyMessage(ev.replyToken, {
     type: "flex",
     altText: "Walicanからのメッセージ",
-    contents: box,
+    contents: questionButton,
   })
 }
 
