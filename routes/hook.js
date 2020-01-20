@@ -7,6 +7,7 @@ const config = {
 const client = new line.Client(config);
 
 const help = require('../src/help/index');
+const pay = require('../src/pay/index');
 
 router.post('/', line.middleware(config), (req, res) => {
   res.status(200).end();
@@ -37,41 +38,6 @@ function sendMessageToUser(ev) {
   })
 }
 
-const box = {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "contents": [
-      {
-              "type": "text",
-              "text": "選択してピエ"
-      },
-      {
-        "type": "button",
-        "style": "primary",
-        "action": {
-          "type": "uri",
-          "label": "割り勘",
-          "uri": "https://c06164a6.ngrok.io/dutch?payId=fjalegihaigh"
-        }
-      },
-      {
-        "type": "button",
-        "style": "primary",
-        "action": {
-          "type": "uri",
-          "label": "貸した",
-          "uri": "https://c06164a6.ngrok.io/borrow/?payId="
-        }
-      },
-    ]
-  }
-};
-
-const generateQuestionButton = require('../src/utils/generateQuestionButton');
-const questionButton = generateQuestionButton();
 
 async function getCommand(ev) {
   const pro = await client.getProfile(ev.source.userId);
@@ -82,11 +48,9 @@ async function getCommand(ev) {
   else if (ev.message.text == '/attend') {
     console.log("attend");
   }
-  return client.replyMessage(ev.replyToken, {
-    type: "flex",
-    altText: "Walicanからのメッセージ",
-    contents: questionButton,
-  })
+  else if (ev.message.text == '/pay') {
+    return pay.payBubble(client, ev);
+  }
 }
 
 module.exports = router;
