@@ -70,4 +70,8 @@ router.get("/", (req, res) => {
   })
 });
 
+router.post("/regist", (req, res) => {
+  console.log(req.body);
+})
+
 module.exports = router;

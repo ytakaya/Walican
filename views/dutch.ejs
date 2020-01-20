@@ -6,23 +6,28 @@
 </head>
 <body>
   <h1>Walican</h1>
-  <form action="#" method="POST">
+  <form action="/dutch/regist" method="POST">
     <div>
       <label>payment ID</label>
       <input type="text" name="name" value="<%= payId %>" readonly>
     </div>
     <div>
+      <label>金額</label>
+      <input type="text" name="amount">
+    </div>
+    <div>
       <label>割り勘する人</label>
       <% users.forEach((user) => { %>
         <% if (user.id == parent) { %>
-          <input type="checkbox"" name="target_users" disabled="disabled" checked>
+          <input type="checkbox" name="target_users" value="<%= user.id %>" onclick='return false;' checked>
         <% } else { %>
-          <input type="checkbox"" name="target_users">
+          <input type="checkbox" name="target_users" value="<%= user.id %>">
         <% } %>
         <img src="<%= user.img %>" alt="">
         <p><%= user.name %></p>
       <% }); %>
     </div>
+    <input type="submit" value="送信">
   </form>
 </body>
 </html>
