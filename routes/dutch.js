@@ -58,6 +58,7 @@ const getUsersByUserIds = async (user_ids) => {
 router.get("/", (req, res) => {
   const payId = url.parse(req.url, true).query.payId;
   getUserIdByPayId(payId).then((payment) => {
+    //parentと押した人が違う場合の処理をいれる
     const {parent, user_ids} = payment;
     getUsersByUserIds(user_ids).then((users) => {
       const doc = {
@@ -71,6 +72,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/regist", (req, res) => {
+  //エラーのリダイレクト処理いれる
   console.log(req.body);
 })
 
