@@ -45,8 +45,8 @@ async function getCommand(ev) {
   if (ev.message.text == '/help') {
     return help.HelpMessage(client, ev);
   }
-  else if (ev.message.text == '/attend') {
-    console.log("attend");
+  else if (ev.message.text == '/connect') {
+    console.log("connect");
   }
   else if (ev.message.text == '/pay') {
     return pay.payBubble(client, ev);
