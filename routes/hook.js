@@ -7,6 +7,7 @@ const config = {
 const client = new line.Client(config);
 
 const help = require('../src/help/index');
+const connect = require('../src/connect/index');
 const pay = require('../src/pay/index');
 
 router.post('/', line.middleware(config), (req, res) => {
@@ -40,13 +41,13 @@ function sendMessageToUser(ev) {
 
 
 async function getCommand(ev) {
-  const pro = await client.getProfile(ev.source.userId);
   console.log(ev.message.text);
   if (ev.message.text == '/help') {
     return help.HelpMessage(client, ev);
   }
   else if (ev.message.text == '/connect') {
-    console.log("connect");
+    const pro = await client.getProfile(ev.source.userId);
+    return connect.connectUser(ev.source, pro, client, ev);
   }
   else if (ev.message.text == '/pay') {
     return pay.payBubble(client, ev);
