@@ -33,13 +33,11 @@ const insertPayments = function(parent_user, group_id, payment_id, replyToken) {
 exports.payBubble = function(client, ev) {
   generateQuestionButton().then(res => {
     const {paymentId, questionButton} = res;
-    // const {userId, groupId} = ev.source;
+    const {userId, groupId} = ev.source;
     const replyToken = ev.replyToken;
-    const userId = 'sample_user_1';
-    const groupId = 'sample_group_1';
     insertPayments(userId, groupId, paymentId);
 
-    return client.replyMessage(ev.replyToken, {
+    return client.replyMessage(replyToken, {
       type: "flex",
       altText: "Walicanからのメッセージ",
       contents: questionButton,
@@ -49,7 +47,6 @@ exports.payBubble = function(client, ev) {
 
 exports.authBubble = function(payId, group_id, user_names) {
   generateAuthButton(payId, user_names).then(authButton => {
-    console.log(group_id)
     return client.pushMessage(group_id, {
       type: "flex",
       altText: "Walicanからのメッセージ",

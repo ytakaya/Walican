@@ -24,7 +24,7 @@ const generateQuestionButton = async (paymentId, user_names) => {
           "action": {
             "type": "uri",
             "label": "認証する",
-            "uri": `https://c06164a6.ngrok.io/dutch?payId=${paymentId}`
+            "uri": `https://e1db85f9.ngrok.io/dutch?payId=${paymentId}`
           }
         }
       ]
