@@ -1,6 +1,9 @@
+const {CONNECTION_URL, DATABASE, OPTIONS} = require("../config/mongodb.config");
+const MongoClient = require("mongodb").MongoClient;
+
 exports.connectUser = async (evsource, user_profile, client, ev) => {
   const status = await registGroupAndUser(evsource, user_profile);
-  
+
   let text;
   if (status == 'alreadyRegisted') {
     text = `「${user_profile.displayName}」は登録済みだよ！`
