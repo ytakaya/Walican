@@ -7,8 +7,8 @@ const config = {
 };
 const client = new line.Client(config);
 
-const generateQuestionButton = require('../utils/generateQuestionButton');
-const generateAuthButton = require('../utils/generateAuthButton');
+const questionButtonMessage = require('../utils/messages/questionButtonMessage');
+const authButtonMessage = require('../utils/messages/authButtonMessage');
 
 const insertPayments = function(parent_user, group_id, payment_id, replyToken) {
   MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
@@ -31,7 +31,7 @@ const insertPayments = function(parent_user, group_id, payment_id, replyToken) {
 };
 
 exports.payBubble = function(client, ev) {
-  generateQuestionButton().then(res => {
+  questionButtonMessage().then(res => {
     const {paymentId, questionButton} = res;
     const {userId, groupId} = ev.source;
     const replyToken = ev.replyToken;
@@ -46,7 +46,7 @@ exports.payBubble = function(client, ev) {
 }
 
 exports.authBubble = function(payId, group_id, user_names) {
-  generateAuthButton(payId, user_names).then(authButton => {
+  authButtonMessage(payId, user_names).then(authButton => {
     return client.pushMessage(group_id, {
       type: "flex",
       altText: "Walicanからのメッセージ",

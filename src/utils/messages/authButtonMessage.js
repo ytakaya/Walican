@@ -1,4 +1,4 @@
-const generateQuestionButton = async (paymentId, user_names) => {
+const authButtonMessage = async (paymentId, user_names) => {
   const names = user_names.join(", ");
   return {
     "type": "bubble",
@@ -32,4 +32,4 @@ const generateQuestionButton = async (paymentId, user_names) => {
   }
 }
 
-exports = module.exports = generateQuestionButton;
+exports = module.exports = authButtonMessage;

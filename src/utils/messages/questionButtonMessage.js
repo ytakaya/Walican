@@ -1,6 +1,6 @@
 const uuid = require('uuid/v1');
 
-const generateQuestionButton = async () => {
+const questionButtonMessage = async () => {
   const paymentId = uuid();
 
   return {
@@ -68,4 +68,4 @@ const generateQuestionButton = async () => {
   }
 }
 
-exports = module.exports = generateQuestionButton;
+exports = module.exports = questionButtonMessage;
