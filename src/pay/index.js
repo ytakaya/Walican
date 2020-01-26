@@ -1,5 +1,3 @@
-const {CONNECTION_URL, DATABASE, OPTIONS} = require("../../config/mongodb.config");
-const MongoClient = require("mongodb").MongoClient;
 const line = require('@line/bot-sdk');
 const config = {
   channelAccessToken: process.env.ACCESS_TOKEN,
@@ -10,32 +8,14 @@ const client = new line.Client(config);
 const questionButtonMessage = require('../utils/messages/questionButtonMessage');
 const authButtonMessage = require('../utils/messages/authButtonMessage');
 
-const insertPayments = function(parent_user, group_id, payment_id, replyToken) {
-  MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
-    const db = client.db(DATABASE);
-    db.collection("payments").insertOne(
-      {
-        payments_id: payment_id,
-        group_id: group_id,
-        parent: parent_user,
-        amount: 0,
-        children: {},
-        status: "pending",
-      }
-    ).catch(() => {
-      console.log(error);
-    }).then(() => {
-      client.close();
-    });
-  }); 
-};
+const db_logics = require('../utils/dbs/index.js');
 
 exports.payBubble = function(client, ev) {
   questionButtonMessage().then(res => {
     const {paymentId, questionButton} = res;
     const {userId, groupId} = ev.source;
     const replyToken = ev.replyToken;
-    insertPayments(userId, groupId, paymentId);
+    db_logics.insertPayments(userId, groupId, paymentId);
 
     return client.replyMessage(replyToken, {
       type: "flex",
