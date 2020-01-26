@@ -8,7 +8,7 @@ const client = new line.Client(config);
 const questionButtonMessage = require('../utils/messages/questionButtonMessage');
 const authButtonMessage = require('../utils/messages/authButtonMessage');
 
-const db_logics = require('../utils/dbs/index.js');
+const db_logics = require('../utils/dbs/logics.js');
 
 exports.payBubble = function(client, ev) {
   questionButtonMessage().then(res => {
