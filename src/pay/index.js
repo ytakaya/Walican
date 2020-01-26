@@ -6,7 +6,7 @@ const config = {
 const client = new line.Client(config);
 
 const questionButtonMessage = require('../utils/messages/questionButtonMessage');
-const authButtonMessage = require('../utils/messages/authButtonMessage');
+const authMessage = require('../utils/messages/authMessage');
 
 const db_logics = require('../utils/dbs/logics.js');
 
@@ -26,11 +26,18 @@ exports.payBubble = function(client, ev) {
 }
 
 exports.authBubble = function(payId, group_id, user_names) {
-  authButtonMessage(payId, user_names).then(authButton => {
+  authMessage(payId, user_names).then(res => {
     return client.pushMessage(group_id, {
-      type: "flex",
-      altText: "Walicanからのメッセージ",
-      contents: authButton,
-    }).catch((err)=>console.log(err.originalError.response))
+      type: "text",
+      text: res.authInfo
+    })
+      .catch((err)=>console.log(err.originalError.response))
+      .then(() => {
+        client.pushMessage(group_id, {
+          type: "text",
+          text: res.authMessage
+        })
+          .catch((err)=>console.log(err.originalError.response))
+      })
   })
 }
