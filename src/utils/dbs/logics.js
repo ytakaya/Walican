@@ -100,3 +100,86 @@ const _findAndInsertUsers = function(db, user_id, user_profile) {
     })
   })
 }
+
+exports.getGroupIdByPayId = function(pay_id) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("payments").findOne({
+        payments_id: pay_id
+      }).then((payment) => {
+        resolve(payment.group_id);
+      }).catch((error) => {
+        throw error;
+      }).then(() => {
+        client.close();
+      });
+    });
+  })
+}
+
+exports.getUserIdByPayId = function(pay_id) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("payments").findOne({
+        payments_id: pay_id
+      }).then((payment) => {
+        db.collection("groups").findOne({
+          group_id: payment.group_id,
+        }).then((group) => {
+          const res = {
+            parent: payment.parent,
+            user_ids: group.users,
+          }
+          resolve(res);
+        })
+      }).catch((error) => {
+        throw error;
+      }).then(() => {
+        client.close();
+      });
+    });
+  })
+}
+
+function _getUserByUserId(user_id) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("users").findOne({
+        user_id: user_id
+      }).then((user) => {
+        const user_info = {
+          id: user.user_id,
+          name: user.user_name,
+          img: user.img,
+        }
+        resolve(user_info);
+      })
+    })
+  })
+}
+
+exports.getUsersByUserIds = async (user_ids) => {
+  const promises = [];
+  user_ids.forEach(user_id => {
+    promises.push(_getUserByUserId(user_id));
+  })
+  return Promise.all(promises);
+}
+
+exports.updatePayments = function(payId, children, amount) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("payments").updateOne({
+        payments_id: payId
+      }, {
+        $set: {children: children, amount: amount, status: "auth_pending"}
+      }).then(() => {
+        client.close();
+      })
+    })
+  })
+}
