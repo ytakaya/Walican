@@ -25,8 +25,8 @@ exports.payBubble = function(client, ev) {
   })
 }
 
-exports.authBubble = function(payId, group_id, user_names) {
-  authMessage(payId, user_names).then(res => {
+exports.authBubble = function(payId, amount, group_id, user_names) {
+  authMessage(amount, payId, user_names).then(res => {
     return client.pushMessage(group_id, {
       type: "text",
       text: res.authInfo
