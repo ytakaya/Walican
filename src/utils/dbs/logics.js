@@ -184,14 +184,14 @@ exports.updatePayments = function(payId, element) {
   })
 }
 
-exports.getChildrenByPayId = function(pay_id) {
+exports.getPaymentByPayId = function(pay_id) {
   return new Promise(resolve => {
     MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
       const db = client.db(DATABASE);
       db.collection("payments").findOne({
         payments_id: pay_id
       }).then((payment) => {
-        resolve(payment.children);
+        resolve(payment);
       }).catch((error) => {
         throw error;
       }).then(() => {
@@ -200,3 +200,22 @@ exports.getChildrenByPayId = function(pay_id) {
     });
   })
 }
+
+exports.insertSummary = function(payment_id, group_id, parent, amount, children) {
+  MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+    const db = client.db(DATABASE);
+    db.collection("payments").insertOne(
+      {
+        payments_id: payment_id,
+        group_id: group_id,
+        parent: parent,
+        amount: amount,
+        children: children,
+      }
+    ).catch(() => {
+      console.log(error);
+    }).then(() => {
+      client.close();
+    });
+  }); 
+};

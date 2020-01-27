@@ -2,14 +2,26 @@ const db_logics = require('../utils/dbs/logics');
 
 exports.authUserByPayId = function(userId, payId) {
   return new Promise(resolve => {
-    db_logics.getChildrenByPayId(payId).then(children => {
-      let user_status = children[userId];
+    db_logics.getPaymentByPayId(payId).then(payment => {
+      let user_status = payment.children[userId];
       if (user_status == null) resolve('invalidUser');
       else if (user_status) resolve('alreadyAuthed');
       else {
-        children[user_id] = true;
-        db_logics.updatePayments(payId, {children: children});
-        resolve('updated');
+        payment.children[userId] = true;
+        if (Object.values(payment.children).indexOf(false) == -1) {
+          //認証完了の処理
+          db_logics.insertSummary(
+            payment.payment_id, 
+            payment.group_id, 
+            payment.parent, 
+            payment.amount, 
+            Object.keys(payment.children))
+          db_logics.updatePayments(payId, {children: payment.children});
+          resolve('authComplete');
+        } else {
+          db_logics.updatePayments(payId, {children: payment.children});
+          resolve('updated'); 
+        }
       }
     })
   })

@@ -63,7 +63,9 @@ async function getCommand(ev) {
         console.log(`${pro.displayName}は認証済みだよ`);
       } else if (res == 'invalidUser') {
         console.log(`${pro.displayName}は関係ないよ`)
-      } else {
+      } else if (res == 'authComplete') {
+        console.log(`payId:${payId}は全員が認証したよ`)
+      } else if (res == 'updated') {
         console.log(`${pro.displayName}が認証したよ`)
       }
     })
