@@ -52,6 +52,9 @@ async function getCommand(ev) {
   else if (ev.message.text == '/pay') {
     return pay.payBubble(client, ev);
   }
+  else if (ev.message.text.split(' ')[0] == '/auth') {
+
+  }
 }
 
 module.exports = router;
