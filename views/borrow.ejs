@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Walican</h1>
-  <form action="/dutch/regist" method="POST">
+  <form action="/borrow/regist" method="POST">
     <div>
       <label>payment ID</label>
       <input type="text" name="payId" value="<%= payId %>" readonly>
@@ -20,7 +20,7 @@
       <label>貸した人</label>
       <% users.forEach((user) => { %>
         <% if (user.id != parent) { %>
-          <input type="radio" name="target_users" value="<%= user.id %>">
+          <input type="radio" name="target_user" value="<%= user.id %>">
           <img src="<%= user.img %>" alt="">
           <p><%= user.name %></p>
         <% } %>

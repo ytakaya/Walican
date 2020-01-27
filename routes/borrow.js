@@ -22,15 +22,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/regist", (req, res) => {
-  //エラーのリダイレクト処理いれる
-  const children = {}
-  req.body.target_users.forEach(target_user => {
-    children[target_user] = false;
-  })
-  // db_logics.updatePayments(req.body.payId, children, req.body.amount);
-  db_logics.updatePayments(req.body.payId, {children: children, amount: req.body.amount, status: "auth_pending"});
+  //エラーのリダイレクト処理いれる, 選択されてなかったらエラー
+  const target_user = req.body.target_user;
+  db_logics.updatePayments(req.body.payId, {children: {target_user: false}, method: 'borrow', amount: req.body.amount, status: "auth_pending"});
   db_logics.getGroupIdByPayId(req.body.payId).then((group_id) => {
-    db_logics.getUsersByUserIds(Object.keys(children)).then((users) => {
+    db_logics.getUsersByUserIds([target_user]).then((users) => {
       const user_names = [];
       users.forEach(user => {
         user_names.push(user.name);
