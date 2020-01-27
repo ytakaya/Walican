@@ -18,7 +18,7 @@ router.post('/', line.middleware(config), (req, res) => {
   for (let i = 0, l = events.length; i < l; i++) {
     const ev = events[i];
     if (ev.source.groupId == null) {
-      sendMessageToUser(ev);
+      replyMessageWithToken(ev.replyToken, `グループに招待して使ってください`);
       return;
     }
   //   promises.push(
@@ -33,10 +33,10 @@ router.post('/', line.middleware(config), (req, res) => {
   // Promise.all(promises).then(console.log("pass"));
 });
 
-function sendMessageToUser(ev) {
-  return client.replyMessage(ev.replyToken, {
+function replyMessageWithToken(replyToken, message) {
+  return client.replyMessage(replyToken, {
     type: "text",
-    text: `グループに招待して使ってください`
+    text: message
   })
 }
 
@@ -60,13 +60,13 @@ async function getCommand(ev) {
     auth.authUserByPayId(userId, payId).then(res => {
       console.log(res);
       if (res == 'alreadyAuthed') {
-        console.log(`${pro.displayName}は認証済みだよ`);
+        replyMessageWithToken(ev.replyToken, `${pro.displayName}は認証済みだよ`);
       } else if (res == 'invalidUser') {
-        console.log(`${pro.displayName}は関係ないよ`)
+        replyMessageWithToken(ev.replyToken, `${pro.displayName}は関係ないよ`);
       } else if (res == 'authComplete') {
-        console.log(`payId:${payId}は全員が認証したよ`)
+        replyMessageWithToken(ev.replyToken, `payId:${payId}は全員が認証したよ`);
       } else if (res == 'updated') {
-        console.log(`${pro.displayName}が認証したよ`)
+        replyMessageWithToken(ev.replyToken, `${pro.displayName}が認証したよ`);
       }
     })
   }
