@@ -15,6 +15,7 @@ exports.authUserByPayId = function(userId, payId) {
             payment.group_id, 
             payment.parent, 
             payment.amount, 
+            payment.method,
             Object.keys(payment.children))
           db_logics.updatePayments(payId, {children: payment.children, status: 'done'});
           resolve('authComplete');

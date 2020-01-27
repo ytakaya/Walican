@@ -201,7 +201,7 @@ exports.getPaymentByPayId = function(pay_id) {
   })
 }
 
-exports.insertSummary = function(payment_id, group_id, parent, amount, children) {
+exports.insertSummary = function(payment_id, group_id, parent, amount, method, children) {
   MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
     const db = client.db(DATABASE);
     db.collection("summary").insertOne(
@@ -210,6 +210,7 @@ exports.insertSummary = function(payment_id, group_id, parent, amount, children)
         group_id: group_id,
         parent: parent,
         amount: amount,
+        method: methos,
         children: children,
       }
     ).catch(() => {
