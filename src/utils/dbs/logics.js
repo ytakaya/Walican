@@ -210,7 +210,7 @@ exports.insertSummary = function(payment_id, group_id, parent, amount, method, c
         group_id: group_id,
         parent: parent,
         amount: amount,
-        method: methos,
+        method: method,
         children: children,
       }
     ).catch(() => {
