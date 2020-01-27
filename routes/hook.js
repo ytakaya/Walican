@@ -56,7 +56,7 @@ async function getCommand(ev) {
   else if (ev.message.text.split(' ')[0] == '/auth') {
     const payId = ev.message.text.split(' ')[1]
     const userId = ev.source.userId;
-    authUserByPayId(userId, payId);
+    auth.authUserByPayId(userId, payId);
   }
 }
 
