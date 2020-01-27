@@ -10,6 +10,7 @@ const help = require('../src/help/index');
 const connect = require('../src/connect/index');
 const pay = require('../src/pay/index');
 const auth = require('../src/auth/index');
+const summary = require('../src/summary/index');
 
 router.post('/', line.middleware(config), (req, res) => {
   res.status(200).end();
@@ -52,6 +53,9 @@ async function getCommand(ev) {
   }
   else if (ev.message.text == '/pay') {
     return pay.payBubble(client, ev);
+  }
+  else if (ev.message.text == '/summary') {
+    return summary.summaryReply(ev);
   }
   else if (ev.message.text.split(' ')[0] == '/auth') {
     const payId = ev.message.text.split(' ')[1]

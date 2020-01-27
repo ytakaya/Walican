@@ -220,3 +220,36 @@ exports.insertSummary = function(payment_id, group_id, parent, amount, method, c
     });
   }); 
 };
+
+function _getUserIdsByGroupId(groupId) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("groups").findOne({
+        group_id: groupId
+      }).then((group) => {
+        resolve(group.users);
+      }).catch((error) => {
+        throw error;
+      }).then(() => {
+        client.close();
+      });
+    });
+  })
+}
+
+exports.getSummaryAndUsers = function(groupId) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+  
+      _getUserIdsByGroupId(groupId).then(users => {
+        db.collection("summary").find({
+          group_id: groupId,
+        }).toArray((error, datas) => {
+            resolve({datas: datas, users: users});
+          });
+        });
+    })
+  })
+}
