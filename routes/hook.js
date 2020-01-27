@@ -56,7 +56,17 @@ async function getCommand(ev) {
   else if (ev.message.text.split(' ')[0] == '/auth') {
     const payId = ev.message.text.split(' ')[1]
     const userId = ev.source.userId;
-    auth.authUserByPayId(userId, payId);
+    const pro = await client.getProfile(ev.source.userId);
+    auth.authUserByPayId(userId, payId).then(res => {
+      console.log(res);
+      if (res == 'alreadyAuthed') {
+        console.log(`${pro.displayName}は認証済みだよ`);
+      } else if (res == 'invalidUser') {
+        console.log(`${pro.displayName}は関係ないよ`)
+      } else {
+        console.log(`${pro.displayName}が認証したよ`)
+      }
+    })
   }
 }
 

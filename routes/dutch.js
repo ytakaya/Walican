@@ -27,7 +27,8 @@ router.post("/regist", (req, res) => {
   req.body.target_users.forEach(target_user => {
     children[target_user] = false;
   })
-  db_logics.updatePayments(req.body.payId, children, req.body.amount);
+  // db_logics.updatePayments(req.body.payId, children, req.body.amount);
+  db_logics.updatePayments(req.body.payId, {children: children, amount: req.body.amount, status: "auth_pending"});
   db_logics.getGroupIdByPayId(req.body.payId).then((group_id) => {
     db_logics.getUsersByUserIds(Object.keys(children)).then((users) => {
       const user_names = [];

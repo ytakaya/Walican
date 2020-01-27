@@ -169,14 +169,14 @@ exports.getUsersByUserIds = async (user_ids) => {
   return Promise.all(promises);
 }
 
-exports.updatePayments = function(payId, children, amount) {
+exports.updatePayments = function(payId, element) {
   return new Promise(resolve => {
     MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
       const db = client.db(DATABASE);
       db.collection("payments").updateOne({
         payments_id: payId
       }, {
-        $set: {children: children, amount: amount, status: "auth_pending"}
+        $set: element
       }).then(() => {
         client.close();
       })

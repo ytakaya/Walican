@@ -1,13 +1,16 @@
 const db_logics = require('../utils/dbs/logics');
 
 exports.authUserByPayId = function(userId, payId) {
-  db_logics.getChildrenByPayId(payId).then(children => {
-    let user_status = children.filter(user_id => {
-      user_id == userId
+  return new Promise(resolve => {
+    db_logics.getChildrenByPayId(payId).then(children => {
+      let user_status = children[userId];
+      if (user_status == null) resolve('invalidUser');
+      else if (user_status) resolve('alreadyAuthed');
+      else {
+        children[user_id] = true;
+        db_logics.updatePayments(payId, {children: children});
+        resolve('updated');
+      }
     })
-    if (!user_status) return 'alreadyAuthed';
-    else {
-      
-    }
   })
 }
