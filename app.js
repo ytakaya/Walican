@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use("/dutch/", require("./routes/dutch.js"));
+app.use("/borrow", require("./routes/borrow.js"));
 
 http.listen(PORT, () => {
   console.log("server listening. Port:" + PORT);

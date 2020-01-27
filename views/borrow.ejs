@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walican</title>
+</head>
+<body>
+  <h1>Walican</h1>
+  <form action="/dutch/regist" method="POST">
+    <div>
+      <label>payment ID</label>
+      <input type="text" name="payId" value="<%= payId %>" readonly>
+    </div>
+    <div>
+      <label>金額</label>
+      <input type="text" name="amount">
+    </div>
+    <div>
+      <label>貸した人</label>
+      <% users.forEach((user) => { %>
+        <% if (user.id != parent) { %>
+          <input type="radio" name="target_users" value="<%= user.id %>">
+          <img src="<%= user.img %>" alt="">
+          <p><%= user.name %></p>
+        <% } %>
+      <% }); %>
+    </div>
+    <input type="submit" value="送信">
+  </form>
+</body>
+</html>
