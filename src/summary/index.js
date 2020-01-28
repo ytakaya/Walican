@@ -1,11 +1,18 @@
 const db_logics = require('../utils/dbs/logics.js');
+const summaryMessage = require('../utils/messages/summaryMessage');
 
-exports.summaryReply = async (ev) => {
+exports.summaryReply = async (client, ev) => {
   db_logics.getSummaryAndUsers(ev.source.groupId).then(res => {
     const {datas, users} = res;
     _payoff(datas, users).then(summary => {
       _getUserInfo(summary).then(user_info => {
         console.log(user_info);
+        summaryMessage().then(res => {
+          return client.replyMessage(ev.replyToken, {
+            type: "text",
+            text: res
+          })
+        })
       })
     })
   })

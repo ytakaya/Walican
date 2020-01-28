@@ -55,7 +55,7 @@ async function getCommand(ev) {
     return pay.payBubble(client, ev);
   }
   else if (ev.message.text == '/summary') {
-    return summary.summaryReply(ev);
+    return summary.summaryReply(client, ev);
   }
   else if (ev.message.text.split(' ')[0] == '/auth') {
     const payId = ev.message.text.split(' ')[1]
