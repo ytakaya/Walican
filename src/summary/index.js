@@ -6,8 +6,7 @@ exports.summaryReply = async (client, ev) => {
     const {datas, users} = res;
     _payoff(datas, users).then(summary => {
       _getUserInfo(summary).then(user_info => {
-        console.log(user_info);
-        summaryMessage().then(res => {
+        summaryMessage(summary, user_info).then(res => {
           return client.replyMessage(ev.replyToken, {
             type: "text",
             text: res
