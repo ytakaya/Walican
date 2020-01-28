@@ -4,7 +4,9 @@ exports.summaryReply = async (ev) => {
   db_logics.getSummaryAndUsers(ev.source.groupId).then(res => {
     const {datas, users} = res;
     _payoff(datas, users).then(summary => {
-      console.log(summary);
+      _getUserInfo(summary).then(user_info => {
+        console.log(user_info);
+      })
     })
   })
 }
@@ -36,5 +38,16 @@ function _payoff(datas, users) {
       }
     })
     resolve(summary);
+  })
+}
+
+function _getUserInfo(summary) {
+  return new Promise(resolve => {
+    const user_ids = Object.keys(summary);
+    console.log(user_ids)
+    db_logics.getUsersByUserIds(user_ids).then((users) => {
+
+      resolve(users);
+    })
   })
 }
