@@ -44,10 +44,12 @@ function _payoff(datas, users) {
 function _getUserInfo(summary) {
   return new Promise(resolve => {
     const user_ids = Object.keys(summary);
-    console.log(user_ids)
     db_logics.getUsersByUserIds(user_ids).then((users) => {
-
-      resolve(users);
+      let user_info = {}
+      user_ids.forEach(user_id => {
+        user_info[user_id] = users.filter(user => user.id == user_id)[0].name
+      })
+      resolve(user_info);
     })
   })
 }
