@@ -6,11 +6,13 @@ exports.summaryReply = async (client, ev) => {
     const {datas, users} = res;
     _payoff(datas, users).then(summary => {
       _getUserInfo(summary).then(user_info => {
-        summaryMessage(summary, user_info).then(res => {
+        summaryMessage(summary, user_info).then(message => {
           return client.replyMessage(ev.replyToken, {
-            type: "text",
-            text: res
+            type: "flex",
+            altText: "Walicanからのメッセージ",
+            contents: message,
           })
+            .catch((err)=>console.log(err.originalError.response))
         })
       })
     })
