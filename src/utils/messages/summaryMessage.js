@@ -8,6 +8,7 @@ const summaryMessage = async (summary, user_info) => {
     contents.push({"type": "separator"});
 
     Object.keys(summary[userA_id]).forEach(userB_id => {
+      if (userB_id == userA_id) return;
       const amount = summary[userA_id][userB_id];
       contents.push({
         "type": "text",
