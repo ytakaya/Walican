@@ -1,3 +1,18 @@
 h1 {
   color: red;
 }
+
+.user_name {
+}
+
+.user_img {
+  float: left;
+}
+
+.radio_button {
+  float: left;
+}
+
+.clear_div {
+  clear: both;
+}
