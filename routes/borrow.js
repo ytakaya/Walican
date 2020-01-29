@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
         users: users,
         parent: parent,
       }
-      res.render("../views/borrow.ejs", doc);
+      res.render("./borrow.ejs", doc);
     })
   })
 });
@@ -33,7 +33,7 @@ router.post("/regist", (req, res) => {
       })
       pay.authBubble(req.body.payId, req.body.amount, group_id, user_names);
       console.log("ok")
-      res.render("../views/complete.ejs", {message: "認証メッセージを送信しました"});
+      res.render("./complete.ejs", {message: "認証メッセージを送信しました"});
     })
   })
 })

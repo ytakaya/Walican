@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Walican</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
   <h1>Walican</h1>
@@ -17,14 +18,22 @@
       <input type="text" name="amount">
     </div>
     <div>
-      <label>貸した人</label>
-      <% users.forEach((user) => { %>
-        <% if (user.id != parent) { %>
-          <input type="radio" name="target_user" value="<%= user.id %>">
-          <img src="<%= user.img %>" alt="">
-          <p><%= user.name %></p>
-        <% } %>
-      <% }); %>
+      <p>貸した人</p>
+      <div class="user_column">
+        <% users.forEach((user) => { %>
+          <% if (user.id != parent) { %>
+            <div class="radio_button">
+              <input type="radio" name="target_user" value="<%= user.id %>">
+            </div>
+            <div class="user_img">
+              <img src="<%= user.img %>" alt="">
+            </div>
+            <div class="user_name">
+              <p><%= user.name %></p>
+            </div>
+          <% } %>
+        <% }); %>
+      </div>
     </div>
     <input type="submit" value="送信">
   </form>
