@@ -11,21 +11,7 @@ const summaryMessage = async (summary, user_info) => {
       if (userB_id == userA_id) return;
       const amount = summary[userA_id][userB_id];
       const color = (amount < 0) ? '#ff0088' : '#0077ff';
-      // contents.push({
-      //   "type": "box",
-      //   "layout": "horizontal",
-      //   "spacing": "md",
-      //   "contents": [
-      //     {
-      //       "type": "span",
-      //       "text": `${user_info[userB_id]}:`
-      //     },
-      //     {
-      //       "type": "span",
-      //       "text": amount
-      //     }
-      //   ]
-      // })
+      
       contents.push({
           "type": "box",
           "layout": "horizontal",
@@ -35,7 +21,7 @@ const summaryMessage = async (summary, user_info) => {
               "contents": [
                 {
                   "type": "span",
-                  "text": "hello, world"
+                  "text": `${user_info[userB_id]}:`
                 }
               ]
             },
@@ -44,7 +30,7 @@ const summaryMessage = async (summary, user_info) => {
               "contents": [
                 {
                   "type": "span",
-                  "text": "hello, world"
+                  "text": String(amount)
                 }
               ]
             }
@@ -53,6 +39,7 @@ const summaryMessage = async (summary, user_info) => {
       )
     })
 
+    contents.push({"type": "text", "text": "\n"});
     contents.push({"type": "text", "text": "\n"});
   })
   
