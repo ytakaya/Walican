@@ -3,7 +3,13 @@ const summaryMessage = async (summary, user_info) => {
   Object.keys(summary).forEach(userA_id => {
     contents.push({
       "type": "text",
-      "text": user_info[userA_id]
+      "contents": [
+        {
+          "type": "span",
+          "text": user_info[userA_id],
+          "weight": "bold"
+        }
+      ]
     });
     contents.push({"type": "separator"});
 
@@ -11,7 +17,7 @@ const summaryMessage = async (summary, user_info) => {
       if (userB_id == userA_id) return;
       const amount = summary[userA_id][userB_id];
       const color = (amount < 0) ? '#ff0088' : '#0077ff';
-      
+
       contents.push({
           "type": "box",
           "layout": "horizontal",
@@ -30,7 +36,8 @@ const summaryMessage = async (summary, user_info) => {
               "contents": [
                 {
                   "type": "span",
-                  "text": String(amount)
+                  "text": String(amount),
+                  "color": color
                 }
               ]
             }
