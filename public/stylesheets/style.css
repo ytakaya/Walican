@@ -3,14 +3,24 @@ h1 {
 }
 
 .user_name {
+  overflow: hidden;
+}
+
+.user_img_box {
+  float: left;
 }
 
 .user_img {
-  float: left;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 100%;
+  padding: 5px;
 }
 
 .radio_button {
   float: left;
+  position: relative;
+  top: 4vw;
 }
 
 .clear_div {

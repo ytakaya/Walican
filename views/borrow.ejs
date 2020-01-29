@@ -19,22 +19,22 @@
     </div>
     <div>
       <p>貸した人</p>
-      <div class="user_column">
-        <% users.forEach((user) => { %>
+      <% users.forEach((user) => { %>
+        <div class="user_column">
           <% if (user.id != parent) { %>
             <div class="radio_button">
               <input type="radio" name="target_user" value="<%= user.id %>">
             </div>
-            <div class="user_img">
-              <img src="<%= user.img %>" alt="">
+            <div class="user_img_box">
+              <img class="user_img" src="<%= user.img %>" alt="">
             </div>
             <div class="user_name">
               <p><%= user.name %></p>
             </div>
             <div class="clear_div"></div>
           <% } %>
-        <% }); %>
-      </div>
+        </div>
+      <% }); %>
     </div>
     <input type="submit" value="送信">
   </form>
