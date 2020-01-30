@@ -22,14 +22,10 @@
       <% users.forEach((user) => { %>
         <div class="user_column">
           <% if (user.id != parent) { %>
-            <input class="checkbox" id="<%= user.id %>" type="radio" name="target_user" value="<%= user.id %>">
+            <input class="radio-input" id="<%= user.id %>" type="radio" name="target_user" value="<%= user.id %>">
             <label for="<%= user.id %>">
-              <div class="user_img_box">
-                <img class="user_img" src="<%= user.img %>" alt="">
-              </div>
-              <div class="user_name">
-                <p><%= user.name %></p>
-              </div>
+              <img class="user_img" src="<%= user.img %>" alt="">
+              <%= user.name %>
             </label>
             <div class="clear_div"></div>
           <% } %>
