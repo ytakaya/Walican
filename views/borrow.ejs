@@ -23,7 +23,7 @@
         <div class="user_column">
           <% if (user.id != parent) { %>
             <div class="radio_button">
-              <input type="radio" name="target_user" value="<%= user.id %>">
+              <input class="checkbox" type="radio" name="target_user" value="<%= user.id %>">
             </div>
             <div class="user_img_box">
               <img class="user_img" src="<%= user.img %>" alt="">

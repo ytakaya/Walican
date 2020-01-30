@@ -23,6 +23,10 @@ h1 {
   top: 4vw;
 }
 
+.checkbox {
+  display: none;
+}
+
 .clear_div {
   clear: both;
 }
