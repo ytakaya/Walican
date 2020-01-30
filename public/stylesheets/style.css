@@ -2,11 +2,16 @@ h1 {
   color: red;
 }
 
+.user_column {
+  margin-left: 5%;
+}
+
 .user_img {
   width: 10vw;
   height: 10vw;
   border-radius: 100%;
   padding: 5px;
+  margin-right: 3%;
   position: relative;
   top: 5vw;
 }
@@ -22,6 +27,8 @@ h1 {
   position:relative;
   margin-right: 20px;
   top: -5vw;
+  font-weight: bold;
+  font-size: large;
 }
 
 .radio-input + label::before{
@@ -36,8 +43,8 @@ h1 {
   border-radius: 50%;
 }
 
-.radio-input:checked + label{
-  color: #d01137;
+.radio-input:checked{
+  color: #1cb319;
 }
 
 .radio-input:checked + label::after{
@@ -48,6 +55,6 @@ h1 {
   left: 3px;
   width: 11px;
   height: 11px;
-  background: #d01137;
+  background: #11d054;
   border-radius: 50%;
 }
