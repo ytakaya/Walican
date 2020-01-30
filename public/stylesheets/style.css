@@ -58,3 +58,11 @@ h1 {
   background: #11d054;
   border-radius: 50%;
 }
+
+.send_button {
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  height: 5vw;
+  width: 100%;
+}

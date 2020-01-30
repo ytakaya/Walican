@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Walican</h1>
-  <form action="/borrow/regist" method="POST">
+  <form name="sendPayInfo" action="/borrow/regist" method="POST">
     <div>
       <label>payment ID</label>
       <input type="text" name="payId" value="<%= payId %>" readonly>
@@ -32,7 +32,18 @@
         </div>
       <% }); %>
     </div>
-    <input type="submit" value="送信">
+    <!-- <div class="send_button">
+      <input type="submit" value="送信">
+    </div> -->
   </form>
+  <div class="send_button">
+    <a href="javaScript:send()">フォーム内容を送信する</a>
+  </div>
+
+  <script Language="JavaScript">
+    function send() {
+      document.sendPayInfo.submit();
+    }
+  </script>
 </body>
 </html>
