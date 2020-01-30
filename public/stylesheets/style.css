@@ -17,15 +17,26 @@ h1 {
   padding: 5px;
 }
 
-.radio_button {
+.checkbox {
   float: left;
   position: relative;
   top: 4vw;
-}
-
-.checkbox {
   display: none;
 }
+
+.checkbox:checked::after{
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  width: 7px;
+  height: 14px;
+  transform: rotate(40deg);
+  border-bottom: 3px solid #d01137;
+  border-right: 3px solid #d01137;
+}
+
 
 .clear_div {
   clear: both;
