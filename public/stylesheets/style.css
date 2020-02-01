@@ -20,6 +20,9 @@ h1 {
 
 .user_column {
   margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 1em;
+  border-bottom: solid 1px gray;
 }
 
 .user_img {

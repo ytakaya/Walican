@@ -21,16 +21,16 @@
       <div>
         <p>貸した人</p>
         <% users.forEach((user) => { %>
-          <div class="user_column">
-            <% if (user.id != parent) { %>
+          <% if (user.id != parent) { %>
+            <div class="user_column">
               <input class="radio-input" id="<%= user.id %>" type="radio" name="target_user" value="<%= user.id %>">
               <label for="<%= user.id %>">
                 <img class="user_img" src="<%= user.img %>" alt="">
                 <%= user.name %>
               </label>
               <div class="clear_div"></div>
-            <% } %>
-          </div>
+            </div>
+          <% } %>
         <% }); %>
       </div>
     </form>
