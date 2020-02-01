@@ -78,7 +78,7 @@ h1 {
   margin: 0;
   text-align: center;
   position: fixed;
-  background-color: gray;
+  background-color: #000033;
   bottom: 0;
   height: 10%;
   width: 100%;
@@ -96,6 +96,9 @@ h1 {
 }
 
 .send_button p {
-  vertical-align: middle;
+  color: #3366FF;
+  font-weight: bold;
+  font-size: large;
   text-align: center;
+  vertical-align: middle;
 }
