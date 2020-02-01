@@ -7,8 +7,9 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
-  <div class="form-body">
+  <div class="header">
     <h1>Walican</h1>
+    <p><b>貸した人を選択してください</b></p>
     <form name="sendPayInfo" action="/borrow/regist" method="POST">
       <div>
         <label>payment ID</label>
@@ -18,8 +19,9 @@
         <label>金額</label>
         <input type="text" name="amount">
       </div>
+  </div>
+    <div class="user-box">
       <div>
-        <p>貸した人</p>
         <% users.forEach((user) => { %>
           <% if (user.id != parent) { %>
             <div class="user_column">

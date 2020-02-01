@@ -3,19 +3,36 @@ body {
   background-color: #fcfcfc;
 }
 
-.form-body {
-  position: fix;
-  height: 90%;
+.header {
+  position: fixed;
+  top: 0;
+  height: 20%;
+  width: 100%;
+  margin: 8px;
+}
+
+.user-box {
+  position: fixed;
+  top: 25%;
+  height: 60%;
+  width: 100%;
   margin: 8px;
   overflow: scroll;
 }
 
-.form-body::-webkit-scrollbar {
+.user-box::-webkit-scrollbar {
   display: none;
 }
 
 h1 {
   color: red;
+  margin: 5px;
+  text-align: center;
+}
+
+.header p {
+  text-align: center;
+  margin: 0;
 }
 
 .user_column {
