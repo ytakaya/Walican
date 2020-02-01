@@ -94,3 +94,8 @@ h1 {
   /* text-indent:-999px; */
   z-index: 2;
 }
+
+.send_button p {
+  vertical-align: middle;
+  text-align: center;
+}
