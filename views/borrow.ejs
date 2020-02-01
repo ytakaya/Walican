@@ -7,33 +7,34 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
-  <h1>Walican</h1>
-  <form name="sendPayInfo" action="/borrow/regist" method="POST">
-    <div>
-      <label>payment ID</label>
-      <input type="text" name="payId" value="<%= payId %>" readonly>
-    </div>
-    <div>
-      <label>金額</label>
-      <input type="text" name="amount">
-    </div>
-    <div>
-      <p>貸した人</p>
-      <% users.forEach((user) => { %>
-        <div class="user_column">
-          <% if (user.id != parent) { %>
-            <input class="radio-input" id="<%= user.id %>" type="radio" name="target_user" value="<%= user.id %>">
-            <label for="<%= user.id %>">
-              <img class="user_img" src="<%= user.img %>" alt="">
-              <%= user.name %>
-            </label>
-            <div class="clear_div"></div>
-          <% } %>
-        </div>
-      <% }); %>
-    </div>
-  </form>
-  
+  <div class="form-body">
+    <h1>Walican</h1>
+    <form name="sendPayInfo" action="/borrow/regist" method="POST">
+      <div>
+        <label>payment ID</label>
+        <input type="text" name="payId" value="<%= payId %>" readonly>
+      </div>
+      <div>
+        <label>金額</label>
+        <input type="text" name="amount">
+      </div>
+      <div>
+        <p>貸した人</p>
+        <% users.forEach((user) => { %>
+          <div class="user_column">
+            <% if (user.id != parent) { %>
+              <input class="radio-input" id="<%= user.id %>" type="radio" name="target_user" value="<%= user.id %>">
+              <label for="<%= user.id %>">
+                <img class="user_img" src="<%= user.img %>" alt="">
+                <%= user.name %>
+              </label>
+              <div class="clear_div"></div>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+    </form>
+  </div>
   <div class="send_button">
     <a href="javaScript:send()">フォーム内容を送信する</a>
   </div>
