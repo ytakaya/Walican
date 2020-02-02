@@ -154,6 +154,7 @@ h1 {
 	width: 15%;
 	text-align: center;
 }
+
 .cp_ipselect select {
 	width: 100%;
 	padding-right: 1em;
@@ -168,15 +169,18 @@ h1 {
 	-webkit-appearance: none;
 	appearance: none;
 }
+
 .cp_ipselect select::-ms-expand {
     display: none;
 }
+
 .cp_ipselect.cp_sl05 {
 	position: relative;
 	border-radius: 2px;
   border-radius: 50px;
 	background: #da3c41;
 }
+
 .cp_ipselect.cp_sl05::before {
 	position: absolute;
   top: 40%;
@@ -190,6 +194,7 @@ h1 {
 	border-top: 6px solid #ffffff;
 	pointer-events: none;
 }
+
 .cp_ipselect.cp_sl05 select {
 	padding: 4px;
 	color: #ffffff;
