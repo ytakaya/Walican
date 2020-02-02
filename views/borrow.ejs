@@ -11,12 +11,16 @@
     <h1>Walican</h1>
     <p><b>貸した人を選択してください</b></p>
     <form name="sendPayInfo" action="/borrow/regist" method="POST">
-      <div>
-        <label>payment ID</label>
+      <div class="input_box">
+        <div class="label">
+          <label>payID:</label>
+        </div>
         <input type="text" name="payId" value="<%= payId %>" readonly>
       </div>
-      <div>
-        <label>金額</label>
+      <div class="input_box">
+        <div class="label">
+          <label>金額:</label>
+        </div>
         <input type="text" name="amount">
         <select name="currency">
           <option value="JPY">円</option>
