@@ -25,7 +25,7 @@ body {
 }
 
 h1 {
-  color: red;
+  color: #da3c41;
   margin: 5px;
   text-align: center;
 }
@@ -144,6 +144,53 @@ h1 {
   box-sizing: border-box;
 }
 
-.input_box select {
-  width: 15%;
+#input_amount {
+  float: left;
+  margin-right: 1em;
+}
+
+.cp_ipselect {
+	overflow: hidden;
+	width: 15%;
+	text-align: center;
+}
+.cp_ipselect select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+  text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+    display: none;
+}
+.cp_ipselect.cp_sl05 {
+	position: relative;
+	border-radius: 2px;
+  border-radius: 50px;
+	background: #da3c41;
+}
+.cp_ipselect.cp_sl05::before {
+	position: absolute;
+  top: 40%;
+	right: 0.5em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #ffffff;
+	pointer-events: none;
+}
+.cp_ipselect.cp_sl05 select {
+	padding: 4px;
+	color: #ffffff;
 }
