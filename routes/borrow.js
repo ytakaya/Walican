@@ -31,7 +31,7 @@ router.post("/regist", (req, res) => {
       users.forEach(user => {
         user_names.push(user.name);
       })
-      pay.authBubble(req.body.payId, req.body.amount, group_id, user_names);
+      pay.authBubble(req.body.payId, req.body.amount, req.body.propose, group_id, user_names);
       console.log("ok")
       res.render("./complete.ejs", {message: "認証メッセージを送信しました"});
     })
