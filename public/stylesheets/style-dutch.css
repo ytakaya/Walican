@@ -20,10 +20,6 @@ body {
   overflow: scroll;
 }
 
-#propose_input {
-  left: 5%;
-}
-
 .user-box::-webkit-scrollbar {
   display: none;
 }

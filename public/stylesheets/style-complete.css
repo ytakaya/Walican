@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .box_wrapper {
   width: 100%;
   height: 50%;
@@ -13,6 +17,7 @@
   margin: 5px;
   font-weight: bold;
   font-size: x-large;
+  color: #1cb319;
 }
 
 .message {
@@ -21,4 +26,8 @@
 
 .message p {
   margin: 5px;
+}
+
+.logo_box {
+  text-align: center;
 }
