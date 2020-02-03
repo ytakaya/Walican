@@ -14,7 +14,7 @@ const questionButtonMessage = async () => {
         "contents": [
           {
             "type": "text",
-            "text": "選択してピエ"
+            "text": "選択してね"
           },
           {
             "type": "separator"
