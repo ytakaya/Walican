@@ -6,6 +6,18 @@
   <title>Walican</title>
 </head>
 <body>
-  <%= message %>
+  <div class="img_box">
+
+  </div>
+  <div class="status">
+    <% if (status=="success") { %>
+      <p id="success">success!!</p>
+    <% } else if (status=="failed") { %>
+      <p id="failed">faild...</p>
+    <% } %>
+  </div>
+  <div class="message">
+    <p><%= message %></p>
+  </div>
 </body>
 </html>

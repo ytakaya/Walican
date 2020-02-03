@@ -40,7 +40,7 @@ router.post("/regist", (req, res) => {
       })
       pay.authBubble(req.body.payId, req.body.amount, req.body.propose, response.group_id, user_names, response.parent);
       console.log("ok")
-      res.render("./complete.ejs", {message: "認証メッセージを送信しました"});
+      res.redirect("/complete/success");
     })
   })
 })
