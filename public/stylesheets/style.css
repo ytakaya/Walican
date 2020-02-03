@@ -6,7 +6,7 @@ body {
 .header {
   position: fixed;
   top: 0;
-  height: 20%;
+  height: 25%;
   width: 100%;
   margin: 8px;
 }
@@ -14,10 +14,14 @@ body {
 .user-box {
   position: fixed;
   top: 25%;
-  height: 60%;
+  height: 55%;
   width: 100%;
   margin: 8px;
   overflow: scroll;
+}
+
+#propose_input {
+  left: 5%;
 }
 
 .user-box::-webkit-scrollbar {
