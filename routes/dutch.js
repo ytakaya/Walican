@@ -27,14 +27,18 @@ router.post("/regist", (req, res) => {
   req.body.target_users.forEach(target_user => {
     children[target_user] = false;
   })
-  // db_logics.updatePayments(req.body.payId, {children: children, method: 'dutch', amount: req.body.amount, status: "auth_pending"});
-  db_logics.getGroupIdByPayId(req.body.payId).then((group_id) => {
-    db_logics.getUsersByUserIds(Object.keys(children)).then((users) => {
+  db_logics.updatePayments(req.body.payId, {children: children, method: 'dutch', amount: req.body.amount, status: "auth_pending"});
+  db_logics.getGroupIdAndParentByPayId(req.body.payId).then((response) => {
+    const user_ids = [];
+    Object.keys(children).forEach(id => {
+      if (id != response.parent) user_ids.push(id);
+    })
+    db_logics.getUsersByUserIds(user_ids).then((users) => {
       const user_names = [];
       users.forEach(user => {
         user_names.push(user.name);
       })
-      pay.authBubble(req.body.payId, req.body.amount, req.body.propose, group_id, user_names);
+      pay.authBubble(req.body.payId, req.body.amount, req.body.propose, response.group_id, user_names, response.parent);
       console.log("ok")
       res.render("./complete.ejs", {message: "認証メッセージを送信しました"});
     })

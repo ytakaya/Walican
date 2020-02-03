@@ -25,13 +25,13 @@ router.post("/regist", (req, res) => {
   //エラーのリダイレクト処理いれる, 選択されてなかったらエラー
   const target_user = req.body.target_user;
   db_logics.updatePayments(req.body.payId, {children: {target_user: false}, method: 'borrow', amount: req.body.amount, status: "auth_pending"});
-  db_logics.getGroupIdByPayId(req.body.payId).then((group_id) => {
+  db_logics.getGroupIdAndParentByPayId(req.body.payId).then((response) => {
     db_logics.getUsersByUserIds([target_user]).then((users) => {
       const user_names = [];
       users.forEach(user => {
         user_names.push(user.name);
       })
-      pay.authBubble(req.body.payId, req.body.amount, req.body.propose, group_id, user_names);
+      pay.authBubble(req.body.payId, req.body.amount, req.body.propose, response.group_id, user_names, response.parent);
       console.log("ok")
       res.render("./complete.ejs", {message: "認証メッセージを送信しました"});
     })

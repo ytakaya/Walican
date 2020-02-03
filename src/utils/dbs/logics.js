@@ -101,14 +101,14 @@ const _findAndInsertUsers = function(db, user_id, user_profile) {
   })
 }
 
-exports.getGroupIdByPayId = function(pay_id) {
+exports.getGroupIdAndParentByPayId = function(pay_id) {
   return new Promise(resolve => {
     MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
       const db = client.db(DATABASE);
       db.collection("payments").findOne({
         payments_id: pay_id
       }).then((payment) => {
-        resolve(payment.group_id);
+        resolve({group_id: payment.group_id, parent: payment.parent});
       }).catch((error) => {
         throw error;
       }).then(() => {
