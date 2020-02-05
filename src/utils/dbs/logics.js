@@ -86,11 +86,12 @@ const _findAndInsertUsers = function(db, user_id, user_profile) {
         resolve(true);
       }
       else {
+        const pictureUrl = (user_profile.pictureUrl) ? user_profile.pictureUrl : '/images/sample_img.png';
         db.collection("users").insertOne(
           {
             user_id: user_id,
             user_name: user_profile.displayName,
-            img: user_profile.pictureUrl,
+            img: pictureUrl,
           }
         ).then(() => {
           console.log("create user");
