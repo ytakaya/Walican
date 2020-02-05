@@ -1,4 +1,6 @@
+require('dotenv').config()
 const uuid = require('uuid/v1');
+const HOST_URL = process.env.HOST_URL;
 
 const questionButtonMessage = async () => {
   const paymentId = uuid();
@@ -29,7 +31,7 @@ const questionButtonMessage = async () => {
             "action": {
               "type": "uri",
               "label": "割り勘",
-              "uri": `https://e1db85f9.ngrok.io/dutch?payId=${paymentId}`
+              "uri": `${HOST_URL}/dutch?payId=${paymentId}`
             }
           },
           {
@@ -38,7 +40,7 @@ const questionButtonMessage = async () => {
             "action": {
               "type": "uri",
               "label": "貸した",
-              "uri": `https://e1db85f9.ngrok.io/borrow?payId=${paymentId}`
+              "uri": `${HOST_URL}/borrow?payId=${paymentId}`
             }
           },
           {
@@ -50,7 +52,7 @@ const questionButtonMessage = async () => {
             "action": {
               "type": "uri",
               "label": "認証状況",
-              "uri": `https://e1db85f9.ngrok.io/auth_status?payId=${paymentId}`
+              "uri": `${HOST_URL}/auth_status?payId=${paymentId}`
             }
           },
           {
@@ -59,7 +61,7 @@ const questionButtonMessage = async () => {
             "action": {
               "type": "uri",
               "label": "キャンセル",
-              "uri": `https://e1db85f9.ngrok.io/cancel?payId=${paymentId}`
+              "uri": `${HOST_URL}/cancel?payId=${paymentId}`
             }
           }
         ]
