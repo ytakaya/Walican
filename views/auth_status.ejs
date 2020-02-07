@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Walican</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style-dutch.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Walican</h1>
+    <p><b>割り勘した人を選択してください</b></p>
+    <form name="sendPayInfo" action="/dutch/regist" method="POST">
+      <div class="input_box">
+        <div class="label">
+          <label>payID:</label>
+        </div>
+        <input type="text" name="payId" value="<%= payId %>" readonly>
+      </div>
+      <div class="input_box">
+        <div class="label">
+          <label>金額:</label>
+        </div>
+        <input id="input_amount" type="text" name="amount">
+        <div class="cp_ipselect cp_sl05">
+          <select name="currency">
+            <option value="JPY">円</option>
+            <option value="KRW">ウォン</option>
+            <option value="USD">USドル</option>
+            <option value="THB">バーツ</option>
+          </select>
+        </div>
+      </div>
+      <div class="input_box" id="propose_input">
+        <div class="label">
+          <label>目的:</label>
+        </div>
+        <input type="text" name="propose">
+      </div>
+  </div>
+    <div class="user-box">
+      <div>
+        <% users.forEach((user) => { %>
+          <div class="user_column">
+            <label>
+              <% if (user.id == parent) { %>
+                <input class="checkbox-input" type="checkbox" name="target_users" value="<%= user.id %>" onclick='return false;' checked>
+              <% } else { %>
+                <input class="checkbox-input" type="checkbox" name="target_users" value="<%= user.id %>">
+              <% } %>
+              <div class="checkbox-parts">
+                <img class="user_img" src="<%= user.img %>" alt="">
+                <span><%= user.name %></span>
+              </div>
+            </label>
+            <div class="clear_div"></div>
+          </div>
+        <% }); %>
+      </div>
+    </form>
+  </div>
+  <div class="send_button">
+    <p>決定</p>
+    <a href="javaScript:send()"></a>
+  </div>
+
+  <script>
+    function send() {
+      document.sendPayInfo.submit();
+    }
+  </script>
+</body>
+</html>
