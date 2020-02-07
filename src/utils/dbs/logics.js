@@ -202,6 +202,23 @@ exports.getPaymentByPayId = function(pay_id) {
   })
 }
 
+exports.getChildrenByPayId = function(pay_id) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("payments").findOne({
+        payments_id: pay_id
+      }).then((payment) => {
+        resolve(payment.children);
+      }).catch((error) => {
+        throw error;
+      }).then(() => {
+        client.close();
+      });
+    });
+  })
+}
+
 exports.insertSummary = function(payment_id, group_id, parent, amount, method, children) {
   MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
     const db = client.db(DATABASE);

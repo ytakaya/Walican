@@ -8,4 +8,12 @@ router.get("/success/", (req, res) => {
   res.render("./complete.ejs", docs);
 });
 
+router.get("/alreadyAuth/", (req, res) => {
+  const docs = {
+    status: "alreadyAuth",
+    message: "認証が完了しました"
+  }
+  res.render("./complete.ejs", docs);
+});
+
 module.exports = router;
