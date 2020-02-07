@@ -16,4 +16,12 @@ router.get("/alreadyAuth/", (req, res) => {
   res.render("./complete.ejs", docs);
 });
 
+router.get("/yetRegist/", (req, res) => {
+  const docs = {
+    status: "yetRegist",
+    message: "まだ登録されていない支払いです"
+  }
+  res.render("./complete.ejs", docs);
+});
+
 module.exports = router;
