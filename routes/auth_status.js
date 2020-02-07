@@ -18,7 +18,20 @@ router.get("/", (req, res) => {
       })
       if (yetAuth) {
         // 認証経過ページの表示
-        res.send(200)
+        db_logics.getUsersByUserIds(Object.keys(children)).then(users => {
+          const children_info = [];
+          users.forEach(user => {
+            children_info.push({
+              name: user.name,
+              img: user.img,
+              auth: children[user.id],
+            })
+          })
+          const doc = {
+            children: children_info,
+          }
+          res.render("./auth_status.ejs", doc);
+        })
       }
       else
         res.redirect("/complete/alreadyAuth");

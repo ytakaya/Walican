@@ -12,10 +12,10 @@
     <p><b>認証ステータス</b></p>
     <div class="user-box">
       <div>
-      <% users.forEach((user) => { %>
+      <% children.forEach((user) => { %>
         <div class="user_column">
           <label>
-            <% if (user.id == parent) { %>
+            <% if (user.auth) { %>
               <input class="checkbox-input" type="checkbox" name="target_users" value="<%= user.id %>" onclick='return false;' checked>
             <% } else { %>
               <input class="checkbox-input" type="checkbox" name="target_users" value="<%= user.id %>">
