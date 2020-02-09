@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Walican</title>
-  <link rel="stylesheet" type="text/css" href="stylesheets/style-dutch.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style-auth-status.css">
 </head>
 <body>
   <div class="header">
@@ -14,17 +14,15 @@
       <div>
       <% children.forEach((user) => { %>
         <div class="user_column">
-          <label>
-            <% if (user.auth) { %>
-              <input class="checkbox-input" type="checkbox" name="target_users" value="<%= user.id %>" onclick='return false;' checked>
-            <% } else { %>
-              <input class="checkbox-input" type="checkbox" name="target_users" value="<%= user.id %>">
-            <% } %>
-            <div class="checkbox-parts">
-              <img class="user_img" src="<%= user.img %>" alt="">
-              <span><%= user.name %></span>
-            </div>
-          </label>
+          <% if (user.auth) { %>
+            <span class="status authed">承認済</span>
+          <% } else { %>
+            <span class="status yet_authed">未承認</span>
+          <% } %>
+          <div class="img_box">
+            <img class="user_img" src="<%= user.img %>" alt="">
+          </div>
+          <span class="user_name"><%= user.name %></span>
           <div class="clear_div"></div>
         </div>
       <% }); %>

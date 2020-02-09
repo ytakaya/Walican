@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  background-color: #fcfcfc;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  height: 25%;
+  width: 100%;
+  margin: 8px;
+}
+
+.user-box {
+  position: fixed;
+  top: 25%;
+  height: 55%;
+  width: 100%;
+  margin: 8px;
+  overflow: scroll;
+}
+
+.user-box::-webkit-scrollbar {
+  display: none;
+}
+
+h1 {
+  color: #da3c41;
+  margin: 5px;
+  text-align: center;
+}
+
+.header p {
+  text-align: center;
+  margin: 0;
+}
+
+.user_column {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 1em;
+  border-bottom: solid 1px gray;
+}
+
+.status {
+  float: left;
+}
+
+.img_box {
+  float: left;
+}
+
+.clear_div {
+  clear: both;
+}
+
+.user_img {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 100%;
+  padding: 5px;
+  margin-right: 3%;
+}
