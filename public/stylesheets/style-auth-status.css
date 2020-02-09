@@ -42,6 +42,22 @@ h1 {
   border-bottom: solid 1px gray;
 }
 
+.user_column span {
+  position: relative;
+  font-weight: bold;
+  font-size: large;
+  top: 3vw;
+  margin: 0 1em;
+}
+
+.authed {
+  color: #da3c41;
+}
+
+.yet_authed {
+  color: #11d054;
+}
+
 .status {
   float: left;
 }
@@ -61,3 +77,4 @@ h1 {
   padding: 5px;
   margin-right: 3%;
 }
+
