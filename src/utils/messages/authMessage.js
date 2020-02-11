@@ -1,10 +1,16 @@
-const authMessage = async (amount, propose, paymentId, user_names, parent) => {
-  const names = user_names.join(", ");
-  const propose_message = (propose=='') ? 'なし' : propose;
-  return {authInfo: `${names}さん、${amount}円の認証依頼が来ました。以下のメッセージをコピーして送信してね\n目的「${propose_message}」`, authMessage: `/auth ${paymentId}`}
+const db_logics = require('../dbs/logics');
+
+const authMessage = (amount, propose, paymentId, user_names, parent) => {
+  return new Promise(resolve => {
+    const propose_message = (propose=='') ? 'なし' : propose;
+    db_logics.getUsersByUserIds([parent]).then(parent => {
+      const auth_info_message = createAuthInfo(amount, propose_message, user_names, parent[0].name);
+      resolve({authInfo: auth_info_message, authMessage: `/auth ${paymentId}`})
+    })
+  })
 }
 
-function createAuthInfo (amount, propose, user_names, parent) {
+function createAuthInfo (amount, propose, users, parent) {
   const contents = [];
   users.forEach(user => {
     contents.push({
@@ -98,7 +104,7 @@ function createAuthInfo (amount, propose, user_names, parent) {
     }
   )
   
-  const message = {
+  return {
     "type": "bubble",
     "body": {
       "type": "box",

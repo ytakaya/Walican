@@ -28,8 +28,9 @@ exports.payBubble = function(client, ev) {
 exports.authBubble = function(payId, amount, propose, group_id, user_names, parent) {
   authMessage(amount, propose, payId, user_names, parent).then(res => {
     return client.pushMessage(group_id, {
-      type: "text",
-      text: res.authInfo
+      type: "flex",
+      altText: "Walicanからのメッセージ",
+      contents: res.authInfo
     })
       .catch((err)=>console.log(err.originalError.response))
       .then(() => {
