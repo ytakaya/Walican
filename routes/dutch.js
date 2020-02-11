@@ -23,12 +23,16 @@ router.get("/", (req, res) => {
 
 router.post("/regist", (req, res) => {
   //エラーのリダイレクト処理いれる
-  const children = {}
-  req.body.target_users.forEach(target_user => {
-    children[target_user] = false;
-  })
-  db_logics.updatePayments(req.body.payId, {children: children, method: 'dutch', amount: req.body.amount, status: "auth_pending"});
   db_logics.getGroupIdAndParentByPayId(req.body.payId).then((response) => {
+    const children = {}
+    req.body.target_users.forEach(target_user => {
+      if (target_user === response.parent)
+        children[target_user] = true;
+      else
+        children[target_user] = false;
+    })
+    db_logics.updatePayments(req.body.payId, {children: children, method: 'dutch', amount: req.body.amount, status: "auth_pending"});
+
     const user_ids = [];
     Object.keys(children).forEach(id => {
       if (id != response.parent) user_ids.push(id);
