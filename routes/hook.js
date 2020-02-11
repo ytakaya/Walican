@@ -74,6 +74,14 @@ async function getCommand(ev) {
       }
     })
   }
+  else if (ev.message.text == '/test') {
+    let amout = 1000
+    let propose = "Aaa"
+    let payId = "055845b0-4cc9-11ea-aaa3-2d5a1025b50c"
+    let users = [ 'adam', 'bob', 'bob' ]
+
+    
+  }
 }
 
 module.exports = router;
