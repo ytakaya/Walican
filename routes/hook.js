@@ -75,12 +75,120 @@ async function getCommand(ev) {
     })
   }
   else if (ev.message.text == '/test') {
-    let amout = 1000
+    let amount = 1000
     let propose = "Aaa"
     let payId = "055845b0-4cc9-11ea-aaa3-2d5a1025b50c"
     let users = [ 'adam', 'bob', 'bob' ]
+    let parent = '貴哉'
 
+    const contents = [];
+    users.forEach(user => {
+      contents.push({
+        "type": "text",
+        "contents": [
+          {
+            "type": "span",
+            "text": `🏄‍♂️　${user}さん`,
+            "weight": "bold"
+          }
+        ]
+      })
+    });
+
+    contents.push({"type": "separator"});
+
+    contents.push({
+      "type": "text",
+      "contents": [
+        {
+          "type": "span",
+          "text": `${parent}さん`,
+          "weight": "bold"
+        },
+        {
+          "type": "span",
+          "text": `から認証申請が届いています😎😎`
+        }
+      ],
+      "wrap": true,
+    })
+
+    contents.push({
+      "type": "text",
+      "text": `⬇️のメッセージをコピーして送信してください🙇‍♂️`,
+      "wrap": true
+    })
+
+    contents.push({"type": "separator"});
+
+    contents.push({
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "contents": [
+              {
+                "type": "span",
+                "text": `金額💴:`
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "contents": [
+              {
+                "type": "span",
+                "text": `${String(amount)}円`,
+                "color": '#0077ff'
+              }
+            ]
+          }
+        ]
+      }
+    )
+
+    contents.push({
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "contents": [
+              {
+                "type": "span",
+                "text": `目的🐶:`
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "contents": [
+              {
+                "type": "span",
+                "text": propose,
+              }
+            ]
+          }
+        ]
+      }
+    )
     
+    const message = {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "md",
+        "contents": contents
+      }
+    }
+
+    client.replyMessage(ev.replyToken, {
+      type: "flex",
+      altText: "Walicanからのメッセージ",
+      contents: message,
+    })
   }
 }
 
