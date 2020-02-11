@@ -1,16 +1,24 @@
 const db_logics = require('../dbs/logics');
 
-const authMessage = (amount, propose, paymentId, user_names, parent) => {
+const authMessage = (amount, propose, paymentId, user_names, parent, method) => {
   return new Promise(resolve => {
     const propose_message = (propose=='') ? 'なし' : propose;
     db_logics.getUsersByUserIds([parent]).then(parent => {
-      const auth_info_message = createAuthInfo(amount, propose_message, user_names, parent[0].name);
+      const auth_info_message = createAuthInfo(amount, propose_message, user_names, parent[0].name, method);
       resolve({authInfo: auth_info_message, authMessage: `/auth ${paymentId}`})
     })
   })
 }
 
-function createAuthInfo (amount, propose, users, parent) {
+function createAuthInfo (amount, propose, users, parent, method) {
+  const auth_emojis = ['😎😎', '😏😏', '🐱🐱', '😈😈', '🤗🤗', '😛😛', '😉😉'];
+  auth_emoji = auth_emojis[Math.floor(Math.random() * auth_emojis.length)]
+
+  const prop_emojis = ['🐶', '🐈', '🐰' , '🐭', '🦊', '🐼', '🐨'];
+  prop_emoji = prop_emojis[Math.floor(Math.random() * prop_emojis.length)]
+
+  const method_message = (method=='dutch') ? '割り勘' : '貸し';
+
   const contents = [];
   users.forEach(user => {
     contents.push({
@@ -37,7 +45,16 @@ function createAuthInfo (amount, propose, users, parent) {
       },
       {
         "type": "span",
-        "text": `から認証申請が届いています😎😎`
+        "text": `から`
+      },
+      {
+        "type": "span",
+        "text": `${method_message}`,
+        "color": '#ff0088',
+      },
+      {
+        "type": "span",
+        "text": `の認証申請が届いています${auth_emoji}`
       }
     ],
     "wrap": true,
@@ -87,7 +104,7 @@ function createAuthInfo (amount, propose, users, parent) {
           "contents": [
             {
               "type": "span",
-              "text": `目的🐶:`
+              "text": `目的${prop_emoji}:`
             }
           ]
         },

@@ -38,7 +38,7 @@ router.post("/regist", (req, res) => {
       users.forEach(user => {
         user_names.push(user.name);
       })
-      pay.authBubble(req.body.payId, req.body.amount, req.body.propose, response.group_id, user_names, response.parent);
+      pay.authBubble(req.body.payId, req.body.amount, req.body.propose, response.group_id, user_names, response.parent, 'dutch');
       console.log("ok")
       res.redirect("/complete/success");
     })
