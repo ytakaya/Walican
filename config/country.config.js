@@ -4,10 +4,6 @@ module.exports = {
       name: 'カナダ',
       flag: '🇨🇦',
     },
-    JPY: {
-      name: '日本',
-      flag: '🇯🇵',
-    },
     THB: {
       name: 'タイ',
       flag: '🇹🇭',
