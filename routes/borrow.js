@@ -8,7 +8,6 @@ const db_logics = require('../src/utils/dbs/logics');
 router.get("/", (req, res) => {
   const payId = url.parse(req.url, true).query.payId;
   db_logics.getUserIdByPayId(payId).then((payment) => {
-    //parentと押した人が違う場合の処理をいれる
     const {parent, user_ids} = payment;
     db_logics.getUsersByUserIds(user_ids).then((users) => {
       const doc = {
