@@ -4,6 +4,8 @@ const HOST_URL = process.env.HOST_URL;
 
 const questionButtonMessage = async () => {
   const paymentId = uuid();
+  const emojis = ['⛹️‍♂️', '🤸‍♂️', '⛷', '🏋️‍♀️', '🏊‍♂️', '🚴‍♀️', '🏌️‍♀️'];
+  const emoji = emojis[Math.floor(Math.random() * emojis.length)]
 
   return {
     paymentId: paymentId,
@@ -16,7 +18,7 @@ const questionButtonMessage = async () => {
         "contents": [
           {
             "type": "text",
-            "text": "選択してね"
+            "text": `${emoji}選択してください${emoji}`
           },
           {
             "type": "separator"
