@@ -19,6 +19,9 @@ router.get("/", (req, res) => {
         res.render("./dutch.ejs", doc);
       })
     }
+    else if (payment_status === 'canceled') {
+      res.redirect("/complete/canceledAuth");
+    }
     else {
       res.redirect('/complete/alreadySendAuth');
     }

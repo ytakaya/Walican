@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
       res.redirect('/complete/cancel')
     }
     else {
-      res.redirect('/complete/alreadyAuthSend')
+      res.redirect('/complete/alreadySendAuth')
     }
   })
 });

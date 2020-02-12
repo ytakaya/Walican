@@ -24,8 +24,10 @@
         <p id="failed">yet Registed.</p>
       <% } else if (status=="alreadySendAuth") { %>
         <p id="failed">already send message.</p>
-      <% } else if (status=="canselSuccess") { %>
-      <p id="success">cancel success.</p>
+      <% } else if (status=="cancelSuccess") { %>
+        <p id="success">cancel success.</p>
+      <% } else if (status=="canceledAuth") { %>
+        <p id="failed">auth was canceled.</p>
       <% } %>
     </div>
     <div class="message">

@@ -34,8 +34,16 @@ router.get("/alreadySendAuth/", (req, res) => {
 
 router.get("/cancel/", (req, res) => {
   const docs = {
-    status: "canselSuccess",
+    status: "cancelSuccess",
     message: "認証をキャンセルしました"
+  }
+  res.render("./complete.ejs", docs);
+});
+
+router.get("/canceledAuth/", (req, res) => {
+  const docs = {
+    status: "canceledAuth",
+    message: "キャンセルされた認証です"
   }
   res.render("./complete.ejs", docs);
 });
