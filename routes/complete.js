@@ -32,4 +32,12 @@ router.get("/alreadySendAuth/", (req, res) => {
   res.render("./complete.ejs", docs);
 });
 
+router.get("/cancel/", (req, res) => {
+  const docs = {
+    status: "canselSuccess",
+    message: "認証をキャンセルしました"
+  }
+  res.render("./complete.ejs", docs);
+});
+
 module.exports = router;

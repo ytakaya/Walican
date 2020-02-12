@@ -26,6 +26,7 @@ app.use("/dutch/", require("./routes/dutch.js"));
 app.use("/borrow/", require("./routes/borrow.js"));
 app.use("/complete/", require("./routes/complete.js"));
 app.use("/auth_status/", require("./routes/auth_status.js"));
+app.use("/cancel/", require("./routes/cancel.js"));
 
 http.listen(PORT, () => {
   console.log("server listening. Port:" + PORT);
