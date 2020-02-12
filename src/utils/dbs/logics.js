@@ -132,6 +132,7 @@ exports.getUserIdByPayId = function(pay_id) {
           const res = {
             parent: payment.parent,
             user_ids: group.users,
+            payment_status: payment.status,
           }
           resolve(res);
         })
