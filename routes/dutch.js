@@ -8,15 +8,20 @@ const db_logics = require('../src/utils/dbs/logics');
 router.get("/", (req, res) => {
   const payId = url.parse(req.url, true).query.payId;
   db_logics.getUserIdByPayId(payId).then((payment) => {
-    const {parent, user_ids} = payment;
-    db_logics.getUsersByUserIds(user_ids).then((users) => {
-      const doc = {
-        payId: payId,
-        users: users,
-        parent: parent,
-      }
-      res.render("./dutch.ejs", doc);
-    })
+    const {parent, user_ids, payment_status} = payment;
+    if (payment_status === 'pending') {
+      db_logics.getUsersByUserIds(user_ids).then((users) => {
+        const doc = {
+          payId: payId,
+          users: users,
+          parent: parent,
+        }
+        res.render("./dutch.ejs", doc);
+      })
+    }
+    else {
+      res.redirect('/complete/alreadySendAuth');
+    }
   })
 });
 
