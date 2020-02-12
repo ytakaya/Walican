@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
       })
     }
     else {
-      res.send(200)
+      res.redirect("/complete/alreadySendAuth");
     }
   })
 });

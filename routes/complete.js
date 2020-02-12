@@ -24,4 +24,12 @@ router.get("/yetRegist/", (req, res) => {
   res.render("./complete.ejs", docs);
 });
 
+router.get("/alreadySendAuth/", (req, res) => {
+  const docs = {
+    status: "alreadySendAuth",
+    message: "既に認証メッセージを送信しています"
+  }
+  res.render("./complete.ejs", docs);
+});
+
 module.exports = router;
