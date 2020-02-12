@@ -12,10 +12,10 @@ const authMessage = (amount, propose, paymentId, user_names, parent, method) => 
 
 function createAuthInfo (amount, propose, users, parent, method) {
   const auth_emojis = ['😎😎', '😏😏', '🐱🐱', '😈😈', '🤗🤗', '😛😛', '😉😉'];
-  auth_emoji = auth_emojis[Math.floor(Math.random() * auth_emojis.length)]
+  const auth_emoji = auth_emojis[Math.floor(Math.random() * auth_emojis.length)]
 
   const prop_emojis = ['🐶', '🐈', '🐰' , '🐭', '🦊', '🐼', '🐨'];
-  prop_emoji = prop_emojis[Math.floor(Math.random() * prop_emojis.length)]
+  const prop_emoji = prop_emojis[Math.floor(Math.random() * prop_emojis.length)]
 
   const method_message = (method=='dutch') ? '割り勘' : '貸し';
 
