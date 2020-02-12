@@ -74,6 +74,9 @@ async function getCommand(ev) {
       }
     })
   }
+  else if (ev.message.text == '/rate') {
+    return rate.rateReply(client, ev);
+  }
 }
 
 module.exports = router;
