@@ -11,6 +11,7 @@ const connect = require('../src/connect/index');
 const pay = require('../src/pay/index');
 const auth = require('../src/auth/index');
 const summary = require('../src/summary/index');
+const rate = require('../src/rate/index');
 
 router.post('/', line.middleware(config), (req, res) => {
   res.status(200).end();
