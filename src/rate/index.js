@@ -15,7 +15,7 @@ exports.rateReply = async (client, ev) => {
   request.get(query, (err, req, res) => {
     const rates = res.rates;
     Object.keys(visible_rate).forEach(key => {
-      console.log(key, rates[key]);
+      console.log(visible_rate[key].name, rates[key]);
     })
   });
 }
