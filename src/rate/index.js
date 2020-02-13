@@ -1,5 +1,5 @@
 const request = require('request');
-const { visible_rate } = require('../../config/country.config');
+const rateMessage = require('../utils/messages/rateMessage');
 const URL = 'https://api.exchangeratesapi.io/latest';
 
 exports.rateReply = async (client, ev) => {
@@ -14,8 +14,6 @@ exports.rateReply = async (client, ev) => {
 
   request.get(query, (err, req, res) => {
     const rates = res.rates;
-    Object.keys(visible_rate).forEach(key => {
-      console.log(visible_rate[key].name, rates[key]);
-    })
+    rateMessage(rates);
   });
 }
