@@ -35,7 +35,7 @@ const rateMessage = async (rates) => {
             "contents": [
               {
                 "type": "span",
-                "text": rates[country],
+                "text": String(rates[country]),
               }
             ]
           }

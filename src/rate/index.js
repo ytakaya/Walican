@@ -14,6 +14,13 @@ exports.rateReply = async (client, ev) => {
 
   request.get(query, (err, req, res) => {
     const rates = res.rates;
-    rateMessage(rates);
+    rateMessage(rates).then(message => {
+      return client.replyMessage(ev.replyToken, {
+        type: "flex",
+        altText: "Walicanからのメッセージ",
+        contents: message,
+      })
+        .catch((err)=>console.log(err.originalError.response))
+    })
   });
 }
