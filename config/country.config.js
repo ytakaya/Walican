@@ -25,4 +25,10 @@ module.exports = {
       flag: '🇰🇷',
     },
   },
+  rate_conversion: {
+    円: 'JPY',
+    ウォン: 'WKR',
+    USドル: 'USD',
+    バーツ: 'THB'
+  }
 };
