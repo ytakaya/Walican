@@ -69,6 +69,12 @@ function createAuthInfo (data, propose, users, parent, method) {
 
   contents.push({"type": "separator"});
 
+  let amount_message = ''
+  if (data.currency == 'JPY')
+    amount_message = `${String(data.jpy)}円`
+  else
+    amount_message = `${String(data.jpy)}円 (${String(data.original)}${visible_rate[data.currency].unit})`
+
   contents.push({
       "type": "box",
       "layout": "horizontal",
@@ -88,7 +94,7 @@ function createAuthInfo (data, propose, users, parent, method) {
           "contents": [
             {
               "type": "span",
-              "text": `${String(data.jpy)}円 (${String(data.original)}${visible_rate[data.currency].unit})`,
+              "text": amount_message,
               "color": '#0077ff'
             }
           ]
