@@ -8,7 +8,7 @@ const rateMessage = async (rates) => {
     "contents": [
       {
         "type": "span",
-        "text": "rate message",
+        "text": "為替情報です",
         "weight": "bold"
       }
     ]
@@ -19,14 +19,14 @@ const rateMessage = async (rates) => {
   Object.keys(visible_rate).forEach(country => {
     contents.push({
         "type": "box",
-        "layout": "horizontal",
+        "layout": "vertical",
         "contents": [
           {
             "type": "text",
             "contents": [
               {
                 "type": "span",
-                "text": `${visible_rate[country].name}`
+                "text": `${visible_rate[country].flag} ${visible_rate[country].name} ${visible_rate[country].flag}`
               }
             ]
           },
@@ -35,7 +35,16 @@ const rateMessage = async (rates) => {
             "contents": [
               {
                 "type": "span",
-                "text": String(rates[country]),
+                "text": `\t100円 👉 ${String(Math.round(rates[country] * 100 * 100) / 100)}${visible_rate[country].unit}`,
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "contents": [
+              {
+                "type": "span",
+                "text": `\t1${visible_rate[country].unit} 👉 ${String(Math.round((1 / rates[country]) * 100) / 100)}円`,
               }
             ]
           }
