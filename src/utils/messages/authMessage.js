@@ -1,16 +1,17 @@
 const db_logics = require('../dbs/logics');
+const { visible_rate } = require('../../../config/country.config');
 
-const authMessage = (amount, propose, paymentId, user_names, parent, method) => {
+const authMessage = (data, propose, paymentId, user_names, parent, method) => {
   return new Promise(resolve => {
     const propose_message = (propose=='') ? 'なし' : propose;
     db_logics.getUsersByUserIds([parent]).then(parent => {
-      const auth_info_message = createAuthInfo(amount, propose_message, user_names, parent[0].name, method);
+      const auth_info_message = createAuthInfo(data, propose_message, user_names, parent[0].name, method);
       resolve({authInfo: auth_info_message, authMessage: `/auth ${paymentId}`})
     })
   })
 }
 
-function createAuthInfo (amount, propose, users, parent, method) {
+function createAuthInfo (data, propose, users, parent, method) {
   const auth_emojis = ['😎😎', '😏😏', '🐱🐱', '😈😈', '🤗🤗', '😛😛', '😉😉'];
   const auth_emoji = auth_emojis[Math.floor(Math.random() * auth_emojis.length)]
 
@@ -83,10 +84,11 @@ function createAuthInfo (amount, propose, users, parent, method) {
         },
         {
           "type": "text",
+          "wrap": true,
           "contents": [
             {
               "type": "span",
-              "text": `${String(amount)}円`,
+              "text": `${String(data.jpy)}円 (${String(data.original)}${visible_rate[data.currency].unit})`,
               "color": '#0077ff'
             }
           ]

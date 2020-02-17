@@ -39,24 +39,31 @@ router.post("/regist", (req, res) => {
       else
         children[target_user] = false;
     })
-    rate.currencyConvert(req.body.amount, req.body.currency).then(converted_amount => {
-      console.log(converted_amount)
-    })
-    // db_logics.updatePayments(req.body.payId, {children: children, method: 'dutch', amount: req.body.amount, status: "auth_pending"});
 
-    // const user_ids = [];
-    // Object.keys(children).forEach(id => {
-    //   if (id != response.parent) user_ids.push(id);
-    // })
-    // db_logics.getUsersByUserIds(user_ids).then((users) => {
-    //   const user_names = [];
-    //   users.forEach(user => {
-    //     user_names.push(user.name);
-    //   })
-    //   pay.authBubble(req.body.payId, req.body.amount, req.body.propose, response.group_id, user_names, response.parent, 'dutch');
-    //   console.log("ok")
-    //   res.redirect("/complete/success");
-    // })
+    rate.currencyConvert(req.body.amount, req.body.currency).then(converted_amount => {
+      const jpy = Math.round(converted_amount);
+      const data = {
+        currency: req.body.currency,
+        original: req.body.amount,
+        jpy: jpy
+      };
+
+      db_logics.updatePayments(req.body.payId, {children: children, method: 'dutch', amount: jpy, status: "auth_pending"});
+
+      const user_ids = [];
+      Object.keys(children).forEach(id => {
+        if (id != response.parent) user_ids.push(id);
+      })
+      db_logics.getUsersByUserIds(user_ids).then((users) => {
+        const user_names = [];
+        users.forEach(user => {
+          user_names.push(user.name);
+        })
+        pay.authBubble(req.body.payId, data, req.body.propose, response.group_id, user_names, response.parent, 'dutch');
+        console.log("ok")
+        res.redirect("/complete/success");
+      })
+    })
   })
 })
 

@@ -13,7 +13,6 @@ exports.currencyConvert = (amount, unit) => {
     };
     console.log(amount,unit)
     request.get(query, (err, req, res) => {
-      console.log(res)
       const rates = res.rates;
       resolve(rates.JPY * amount)
     });
