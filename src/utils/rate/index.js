@@ -3,18 +3,21 @@ const URL = 'https://api.exchangeratesapi.io/latest';
 
 exports.currencyConvert = (amount, unit) => {
   return new Promise(resolve => {
-    const query = {
-      uri: URL,
-      headers: {'Content-type': 'application/json'},
-      qs: {
-          base: unit
-      },
-      json: true
-    };
-    console.log(amount,unit)
-    request.get(query, (err, req, res) => {
-      const rates = res.rates;
-      resolve(rates.JPY * amount)
-    });
+    if (unit == 'JPY')
+      resolve(amount)
+    else {
+      const query = {
+        uri: URL,
+        headers: {'Content-type': 'application/json'},
+        qs: {
+            base: unit
+        },
+        json: true
+      };
+      request.get(query, (err, req, res) => {
+        const rates = res.rates;
+        resolve(rates.JPY * amount)
+      });
+    }
   })
 }
