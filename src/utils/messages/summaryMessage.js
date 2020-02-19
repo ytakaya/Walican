@@ -1,5 +1,11 @@
 const summaryMessage = async (summary, user_info) => {
   const contents = [];
+  contents.push({
+    "type": "text",
+    "text": '💸現在の貸し借り状況です💸'
+  });
+  contents.push({"type": "text", "text": "\n"});
+
   Object.keys(summary).forEach(userA_id => {
     contents.push({
       "type": "text",
@@ -49,7 +55,7 @@ const summaryMessage = async (summary, user_info) => {
     contents.push({"type": "text", "text": "\n"});
     contents.push({"type": "text", "text": "\n"});
   })
-  
+
   return {
     "type": "bubble",
     "body": {
