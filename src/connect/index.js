@@ -5,11 +5,11 @@ exports.connectUser = async (evsource, user_profile, client, ev) => {
 
   let text;
   if (status == 'alreadyRegisted') {
-    text = `「${user_profile.displayName}」は登録済みだよ！`
+    text = `😎「${user_profile.displayName}」は登録済みです😎`
   } else if (status) {
-    text = `「${user_profile.displayName}」を登録したよ！`
+    text = `💥「${user_profile.displayName}」を登録しました💥`
   } else {
-    text = `「${user_profile.displayName}」を登録に失敗したよ...`
+    text = `😢「${user_profile.displayName}」を登録に失敗したよ...😢`
   }
 
   return client.replyMessage(ev.replyToken, {
