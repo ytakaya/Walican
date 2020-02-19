@@ -4,7 +4,7 @@ const summaryMessage = require('../utils/messages/summaryMessage');
 exports.summaryReply = async (client, ev) => {
   db_logics.getSummaryAndUsers(ev.source.groupId).then(res => {
     const {datas, users} = res;
-    _payoff(datas, users).then(summary => {
+    exports.payoff(datas, users).then(summary => {
       _getUserInfo(summary).then(user_info => {
         summaryMessage(summary, user_info).then(message => {
           return client.replyMessage(ev.replyToken, {
@@ -19,7 +19,7 @@ exports.summaryReply = async (client, ev) => {
   })
 }
 
-function _payoff(datas, users) {
+exports.payoff = (datas, users) => {
   return new Promise(resolve => {
     let summary = {};
     users.forEach(userA => {
