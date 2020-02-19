@@ -61,5 +61,39 @@ describe('summary test', () => {
         expect(summary).toEqual(ans)
       })
     })
+
+    test('adam dutch with bob and carol', () => {
+      const datas = [
+        { 
+          parent: 'adam',
+          method: 'dutch',
+          amount: 3000,
+          children: ['adam', 'bob', 'carol'] 
+        }
+      ]
+
+      const users = ['adam', 'bob', 'carol']
+
+      target.payoff(datas, users).then(summary => {
+        const ans = {
+          adam: {
+            adam: 0,
+            bob: 1000,
+            carol: 1000
+          },
+          bob: {
+            adam: -1000,
+            bob: 0,
+            carol: 0
+          },
+          carol: {
+            adam: -1000,
+            bob: 0,
+            carol: 0
+          }
+        }
+        expect(summary).toEqual(ans)
+      })
+    })
   })
 })
