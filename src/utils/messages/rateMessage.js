@@ -8,7 +8,7 @@ const rateMessage = async (rates) => {
     "contents": [
       {
         "type": "span",
-        "text": "為替情報です",
+        "text": "🔁為替情報です🔁",
         "weight": "bold"
       }
     ]
