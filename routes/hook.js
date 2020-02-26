@@ -1,3 +1,4 @@
+require('dotenv').config;
 const router = require("express").Router();
 const line = require('@line/bot-sdk');
 const config = {
