@@ -1,10 +1,12 @@
 require('dotenv').config;
 const router = require("express").Router();
 const url = require('url');
+const request = require('request');
 
 // const db_logics = require('../src/utils/dbs/logics');
 const CHANNEL_ID = process.env.CHANNEL_ID;
-const Callback_URL = `${process.env.HOST_URL}/oauth/complete`;
+const CHANNEL_SECRET = process.env.CHANNEL_SECRET;
+const Callback_URL = `${process.env.HOST_URL}/oauth/getToken`;
 const State = 'falehigiao3';
 const oauth_url = `https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=${CHANNEL_ID}&redirect_uri=${Callback_URL}&state=${State}`
 
@@ -13,11 +15,26 @@ router.get("/", (req, res) => {
   res.redirect(oauth_url)
 });
 
-router.get("/complete", (req, res) => {
-  const accessToken = url.parse(req.url, true).query.code;
-  console.log(accessToken)
-  res.send(200)
+router.get("/getToken", (req1, res1) => {
+  const query = {
+    uri: 'https://api.line.me/v2/oauth/accessToken',
+    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+    qs: {
+      grant_type: 'authorization_code',
+      code: url.parse(req1.url, true).query.code,
+      client_id: CHANNEL_ID,
+      client_secret: CHANNEL_SECRET,
+      redirect_uri: `${process.env.HOST_URL}/oauth/getToken`
+    },
+    json: true
+  };
+  request.post(query, (err, req2, res2) => {
+    if (err) console.log(err);
+    else {
+      console.log(res2);
+      res1.redirect(`/`)
+    }
+  });
 })
 
 module.exports = router;
-
