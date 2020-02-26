@@ -36,7 +36,7 @@ exports.payoff = (datas, users) => {
         summary[child][data.parent] -= data.amount;
       }
       else if (data.method == 'dutch') {
-        const amountPerUser = data.amount / data.children.length;
+        const amountPerUser = Math.ceil((data.amount / data.children.length) / 10) * 10;
         data.children.forEach(child => {
           if (child != data.parent) {
             summary[data.parent][child] += amountPerUser;
