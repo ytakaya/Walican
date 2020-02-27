@@ -9,9 +9,11 @@
 <body>
     <p><%= displayName %>さんですね？</p>
     <form action="/oauth/login" method="POST">
-      <label for="username">ユーザー名</label>
-      <input type="text" id="username" name="username" value="<%= userId %>">
-      <input type="text" id="password" name="password" value="aaaa">
+      <div class="hidden-box" style="display: none;">
+        <label for="username">ユーザー名</label>
+        <input type="text" id="username" name="username" value="<%= userId %>">
+        <input type="text" id="password" name="password" value="aaaa">
+      </div>
       <input type="submit" value="ログイン">
     </form>
 </body>
