@@ -7,10 +7,11 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/style-complete.css">
 </head>
 <body>
-    <p><%= userId %>さんですね？</p>
+    <p><%= displayName %>さんですね？</p>
     <form action="/oauth/login" method="POST">
       <label for="username">ユーザー名</label>
       <input type="text" id="username" name="username" value="<%= userId %>">
+      <input type="text" id="password" name="password" value="aaaa">
       <input type="submit" value="ログイン">
     </form>
 </body>

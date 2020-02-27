@@ -145,7 +145,7 @@ exports.getUserIdByPayId = function(pay_id) {
   })
 }
 
-function _getUserByUserId(user_id) {
+exports.getUserByUserId = (user_id) => {
   return new Promise(resolve => {
     MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
       const db = client.db(DATABASE);
@@ -166,7 +166,7 @@ function _getUserByUserId(user_id) {
 exports.getUsersByUserIds = async (user_ids) => {
   const promises = [];
   user_ids.forEach(user_id => {
-    promises.push(_getUserByUserId(user_id));
+    promises.push(exports.getUserByUserId(user_id));
   })
   return Promise.all(promises);
 }

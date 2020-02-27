@@ -32,7 +32,6 @@ router.get("/getToken", (req1, res1) => {
   request.post(q1, (err, req2, res2) => {
     if (err) console.log(err);
     else {
-      console.log(res2);
       const q2 = {
         uri: 'https://api.line.me/v2/profile',
         headers: {'Authorization': `Bearer ${res2.access_token}`}
@@ -41,7 +40,6 @@ router.get("/getToken", (req1, res1) => {
         if (err) console.log(err);
         else {
           const docs = JSON.parse(res3)
-          console.log(docs)
           res1.render('./login.ejs', docs);
         }
       })
