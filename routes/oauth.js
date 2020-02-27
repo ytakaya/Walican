@@ -49,4 +49,6 @@ router.get("/getToken", (req1, res1) => {
   });
 })
 
+router.post("/login", authenticate());
+
 module.exports = router;

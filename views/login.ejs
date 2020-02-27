@@ -7,9 +7,11 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/style-complete.css">
 </head>
 <body>
-  <div class="box">
-    <p><%= displayName %></p>
-    <p><%= userId %></p>
-  </div>
+    <p><%= userId %>さんですね？</p>
+    <form action="/oauth/login" method="POST">
+      <label for="username">ユーザー名</label>
+      <input type="text" id="username" name="username" value="<%= userId %>">
+      <input type="submit" value="ログイン">
+    </form>
 </body>
 </html>
