@@ -40,10 +40,11 @@ router.get("/getToken", (req1, res1) => {
       request.get(q2, (err, req3, res3) => {
         if (err) console.log(err);
         else {
-          console.log(res3)
+          const docs = JSON.parse(res3)
+          console.log(docs)
+          res1.render('./login.ejs', docs);
         }
       })
-      res1.redirect('/')
     }
   });
 })
