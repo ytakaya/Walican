@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const http = require("http").Server(app);
 const bodyParser = require("body-parser");
+const flash = require("connect-flash");
+const accountcontrol = require("./lib/security/accountcontrol");
 const PORT = 8080;
 
 app.set("views", "./views");
@@ -13,6 +15,8 @@ app.use("/hook", require("./routes/hook.js"));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(flash());
+app.use(...accountcontrol.initialize());
 
 app.use("/dutch/", require("./routes/dutch.js"));
 app.use("/borrow/", require("./routes/borrow.js"));

@@ -2,6 +2,7 @@ require('dotenv').config;
 const router = require("express").Router();
 const url = require('url');
 const request = require('request');
+const { authenticate } = require("../lib/security/accountcontrol");
 
 // const db_logics = require('../src/utils/dbs/logics');
 const CHANNEL_ID = process.env.CHANNEL_ID;
@@ -16,7 +17,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/getToken", (req1, res1) => {
-  const query = {
+  const q1 = {
     uri: 'https://api.line.me/v2/oauth/accessToken',
     headers: {'Content-type': 'application/x-www-form-urlencoded'},
     qs: {
@@ -28,11 +29,21 @@ router.get("/getToken", (req1, res1) => {
     },
     json: true
   };
-  request.post(query, (err, req2, res2) => {
+  request.post(q1, (err, req2, res2) => {
     if (err) console.log(err);
     else {
       console.log(res2);
-      res1.redirect(`/`)
+      const q2 = {
+        uri: 'https://api.line.me/v2/profile',
+        headers: {'Authorization': `Bearer ${res2.access_token}`}
+      }
+      request.get(q2, (err, req3, res3) => {
+        if (err) console.log(err);
+        else {
+          console.log(res3)
+        }
+      })
+      res1.redirect('/')
     }
   });
 })
