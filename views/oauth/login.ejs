@@ -8,5 +8,8 @@
 </head>
 <body>
   <a href="<%= url %>">LINEでログインする</a>
+  <% if (mesage && message.length != 0) { %>
+    <p><%= message %></p>
+  <% } %>
 </body>
 </html>

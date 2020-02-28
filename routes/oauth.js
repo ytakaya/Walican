@@ -14,7 +14,8 @@ const oauth_url = `https://access.line.me/dialog/oauth/weblogin?response_type=co
 
 router.get("/", (req, res) => {
   const docs = {
-    url: oauth_url
+    url: oauth_url,
+    message: req.flash("message")
   }
   res.render("./oauth/login.ejs", docs)
 });
