@@ -2,7 +2,7 @@ require('dotenv').config;
 const router = require("express").Router();
 const url = require('url');
 const request = require('request');
-const { authenticate } = require("../lib/security/accountcontrol");
+const { authenticate } = require("../../lib/security/accountcontrol");
 
 // const db_logics = require('../src/utils/dbs/logics');
 const CHANNEL_ID = process.env.CHANNEL_ID;
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
     url: oauth_url,
     message: req.flash("message")
   }
-  res.render("./oauth/login.ejs", docs)
+  res.render("./account/oauth/login.ejs", docs)
 });
 
 router.get("/getToken", (req1, res1) => {
@@ -44,7 +44,7 @@ router.get("/getToken", (req1, res1) => {
         if (err) console.log(err);
         else {
           const docs = JSON.parse(res3)
-          res1.render('./oauth/login-confirm.ejs', docs);
+          res1.render('./account/oauth/login-confirm.ejs', docs);
         }
       })
     }
