@@ -13,7 +13,10 @@ const oauth_url = `https://access.line.me/dialog/oauth/weblogin?response_type=co
 
 
 router.get("/", (req, res) => {
-  res.redirect(oauth_url)
+  const docs = {
+    url: oauth_url
+  }
+  res.render("./oauth/login.ejs", docs)
 });
 
 router.get("/getToken", (req1, res1) => {
@@ -40,7 +43,7 @@ router.get("/getToken", (req1, res1) => {
         if (err) console.log(err);
         else {
           const docs = JSON.parse(res3)
-          res1.render('./login.ejs', docs);
+          res1.render('./oauth/login-confirm.ejs', docs);
         }
       })
     }
