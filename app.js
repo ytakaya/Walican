@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
 const accountcontrol = require("./lib/security/accountcontrol");
+const { authorize } = require("./lib/security/accountcontrol");
 const PORT = 8080;
 
 app.set("views", "./views");
@@ -29,7 +30,7 @@ app.use(bodyParser.json());
 app.use(flash());
 app.use(...accountcontrol.initialize());
 
-app.get('/', (req, res) => res.send('welcome walican'))
+app.get('/', authorize('readWrite'), (req, res) => res.send('welcome walican'))
 app.use("/dutch/", require("./routes/dutch.js"));
 app.use("/borrow/", require("./routes/borrow.js"));
 app.use("/complete/", require("./routes/complete.js"));
