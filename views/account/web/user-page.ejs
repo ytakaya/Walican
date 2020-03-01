@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walican | user</title>
+  <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/user-page.css" type="text/css">
+</head>
+<body>
+  <%- include("../../share/header.ejs", {user: true, img: userImg}) %>
+
+  <div id="main">
+    <div id="user_info">
+      <div>
+        <img src="<%= userImg %>" alt="">
+      </div>
+      <div id="name">
+        <span><%= userName %></span>
+      </div>
+    </div>
+
+    <div id="groups">
+      <span>所属グループ</span>
+      <ul>
+        <li><a href="#">グループ名</a></li>
+        <li><a href="#">グループ名</a></li>
+        <li><a href="#">グループ名</a></li>
+        <li><a href="#">グループ名</a></li>
+        <li><a href="#">グループ名</a></li>
+        <li><a href="#">グループ名</a></li>
+        <li><a href="#">グループ名</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <%- include("../../share/menu_script.ejs") %>
+</body>
+</html>
