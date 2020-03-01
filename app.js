@@ -37,6 +37,7 @@ app.use("/complete/", require("./routes/complete.js"));
 app.use("/auth_status/", require("./routes/auth_status.js"));
 app.use("/cancel/", require("./routes/cancel.js"));
 app.use("/oauth/", require("./routes/account/oauth.js"));
+app.use("/account/", require("./routes/account/web.js"));
 
 http.listen(PORT, () => {
   console.log("server listening. Port:" + PORT);
