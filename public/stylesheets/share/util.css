@@ -1,0 +1,14 @@
+body {
+  font-family: "メイリオ", Meiryo;
+  color: #434343;
+  background-color: #f6f6f6;
+}
+
+a {
+  color: #434343;
+  text-decoration: none;
+}
+
+.cf {
+  clear: both;
+}

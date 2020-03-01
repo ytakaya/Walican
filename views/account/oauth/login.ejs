@@ -3,13 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Walican</title>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/style-complete.css">
+  <title>Walican | login</title>
+  <link rel="stylesheet" href="stylesheets/share/init.css">
+  <link rel="stylesheet" href="stylesheets/share/util.css">
+  <link rel="stylesheet" href="stylesheets/share/header.css">
+  <link rel="stylesheet" href="stylesheets/account/login.css">
 </head>
 <body>
-  <a href="<%= url %>">LINEでログインする</a>
-  <% if (message && message.length != 0) { %>
-    <p><%= message %></p>
-  <% } %>
+  <%- include("../../share/header.ejs", {user: null}) %>
+
+  <div id="main">
+    <div id="content">
+      <p id="welcome">
+        Walicanへようこそ
+      </p>
+      <p id="description">
+        グループ内でのお金の貸し借りを <br>
+        管理するためのアプリです
+      </p>
+      <a href="<%= url %>">
+        Lineでログイン
+      </a>
+    </div>
+  </div>
+
+  <%- include("../../share/menu_script.ejs") %>
 </body>
 </html>

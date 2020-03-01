@@ -1,0 +1,38 @@
+/* ========================================
+    main
+========================================= */
+#main {
+  height: 70vh;
+  width: 100%;
+  text-align: center;
+}
+
+#content {
+  margin-top: 20vh;
+}
+
+#welcome {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#description {
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+#content a {
+  border: 2px solid rgba(205, 205, 205, 1);
+  font-size: 18px;
+  font-weight: bold;
+  width: auto;
+  height: 50px;
+  padding: 15px 15px 15px 55px;
+  background: url(/images/line.png) no-repeat 5px 5px rgba(205, 205, 205, 0.9);
+}
+
+#content a:hover {
+  opacity: 0.6;
+}

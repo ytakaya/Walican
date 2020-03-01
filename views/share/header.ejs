@@ -1,0 +1,29 @@
+<header>
+  <div id="menu_button">
+    <button><span>Menu</span></button>
+  </div>
+
+  <div id="logo_wrapper">
+    <div id="header_logo">
+      <h1>Walican</h1>
+    </div>
+  </div>
+
+  <% if (user != null) { %>
+    <div id="profile">
+      <img src="/images/sample_img.png" alt="">
+    </div>
+  <% } %>
+
+  <div class="cf"></div>
+
+  <% if (user != null) { %>
+    <div id="global_menu" class="hidden">
+      <ul>
+        <li><a href="#">ユーザーページ</a></li>
+        <li><a href="#">認証依頼</a></li>
+        <li><a href="#">ログアウト</a></li>
+      </ul>
+    </div>
+  <% } %>
+</header>

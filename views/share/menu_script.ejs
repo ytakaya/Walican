@@ -1,0 +1,13 @@
+<script>
+  if (document.getElementById("global_menu") != null) {
+    document.getElementById("menu_button").onclick = function() {
+    const classList = document.getElementById("global_menu").classList;
+    if (classList.value.indexOf("hidden") >= 0) {
+      document.getElementById("global_menu").classList.remove("hidden");
+    }
+    else {
+      document.getElementById("global_menu").classList.add("hidden");
+    }
+  }
+  }
+</script>
