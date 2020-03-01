@@ -3,18 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Walican</title>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/style-complete.css">
+  <title>Walican | login</title>
+  <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/login-confirm.css" type="text/css">
 </head>
 <body>
-    <p><%= displayName %>さんですね？</p>
-    <form action="/oauth/login" method="POST">
-      <div class="hidden-box" style="display: none;">
-        <label for="username">ユーザー名</label>
-        <input type="text" id="username" name="username" value="<%= userId %>">
-        <input type="text" id="password" name="password" value="aaaa">
-      </div>
-      <input type="submit" value="ログイン">
-    </form>
+  <%- include("../../share/header.ejs", {user: null}) %>
+
+  <div id="main">
+    <div>
+      <img src="<%= pictureUrl %>" alt="">
+    </div>
+    <div id="name">
+      <span><%= displayName %></span>
+    </div>
+    <div id="login">
+      <form action="/oauth/login" method="POST">
+        <div class="hidden-box" style="display: none;">
+          <label for="username">ユーザー名</label>
+          <input type="text" id="username" name="username" value="<%= userId %>">
+          <input type="text" id="password" name="password" value="aaaa">
+        </div>
+        <input id="submit_button" type="submit" value="ログイン">
+      </form>
+    </div>
+  </div>
+
+  <%- include("../../share/menu_script.ejs") %>
 </body>
 </html>
