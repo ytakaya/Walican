@@ -26,7 +26,7 @@
       <span>所属グループ</span>
       <ul>
         <% groups.forEach(group => { %>
-          <li><a href="/account/groups/?groupId=<%= group.group_id %>"><%= group.name %></a></li>
+          <li><a href="/account/groups/?groupId=<%= group %>"><%= group %></a></li>
         <% }); %>
       </ul>
     </div>

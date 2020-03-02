@@ -327,9 +327,35 @@ exports.getGroupsByuserId = (user_id) => {
       db.collection("users").findOne({
         user_id: user_id
       }).then((user) => {
-        const groups = user.groups;
-        resolve(groups);
+        exports.getGroupsByGroupIds(user.groups).then(groups => {
+          resolve(groups);
+        })
       })
     })
   })
+}
+
+exports.getGroupByGroupId = (group_id) => {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("groups").findOne({
+        group_id: group_id
+      }).then((group) => {
+        const group_info = {
+          id: group.group_id,
+          name: group.name,
+        }
+        resolve(group_info);
+      })
+    })
+  })
+}
+
+exports.getGroupsByGroupIds = async (group_ids) => {
+  const promises = [];
+  group_ids.forEach(group_id => {
+    promises.push(exports.getGroupByGroupId(group_id));
+  })
+  return Promise.all(promises);
 }
