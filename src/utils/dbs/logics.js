@@ -81,22 +81,7 @@ const _findAndInsertUsers = function(db, user_id, user_profile, group_id) {
     db.collection("users").findOne({
       user_id: user_id
     }).then((user) => {
-      if (user != null && user.groups.indexOf(group_id) >= 0) {
-        console.log("user already registed")
-        resolve(true);
-      }
-      else if (user.groups.indexOf(group_id) == -1) {
-        user.groups.push(group_id);
-          db.collection("users").updateOne({
-            user_id: user_id
-          }, {
-            $set: user
-          }).then(() => {
-            console.log("insert group to user");
-            resolve(true);
-          })
-      }
-      else {
+      if (user == null) {
         const pictureUrl = (user_profile.pictureUrl) ? user_profile.pictureUrl : '/images/sample_img.png';
         db.collection("users").insertOne(
           {
@@ -109,6 +94,23 @@ const _findAndInsertUsers = function(db, user_id, user_profile, group_id) {
           console.log("create user");
           resolve(true);
         })
+      }
+      else if (user.groups == null || user.groups.indexOf(group_id) == -1) {
+        if (user.groups == null)
+          user.groups = [];
+        user.groups.push(group_id);
+          db.collection("users").updateOne({
+            user_id: user_id
+          }, {
+            $set: user
+          }).then(() => {
+            console.log("insert group to user");
+            resolve(true);
+          })
+      }
+      else if (user != null && user.groups.indexOf(group_id) >= 0) {
+        console.log("user already registed")
+        resolve(true);
       }
     })
   })
