@@ -25,13 +25,9 @@
     <div id="groups">
       <span>所属グループ</span>
       <ul>
-        <li><a href="#">グループ名</a></li>
-        <li><a href="#">グループ名</a></li>
-        <li><a href="#">グループ名</a></li>
-        <li><a href="#">グループ名</a></li>
-        <li><a href="#">グループ名</a></li>
-        <li><a href="#">グループ名</a></li>
-        <li><a href="#">グループ名</a></li>
+        <% groups.forEach(group => { %>
+          <li><a href="/account/groups/?groupId=<%= group.group_id %>"><%= group.name %></a></li>
+        <% }); %>
       </ul>
     </div>
   </div>

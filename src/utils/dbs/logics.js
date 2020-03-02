@@ -27,7 +27,7 @@ exports.registGroupAndUser = function(evsource, user_profile) {
       const db = client.db(DATABASE);
       Promise.all([
         _findAndInsertGroups(db, evsource.groupId, evsource.userId),
-        _findAndInsertUsers(db, evsource.userId, user_profile),
+        _findAndInsertUsers(db, evsource.userId, user_profile, evsource.groupId),
       ]).catch(() => {
         console.log(error);
         resolve(false);
@@ -76,14 +76,25 @@ const _findAndInsertGroups = function(db, group_id, user_id) {
   })
 };
 
-const _findAndInsertUsers = function(db, user_id, user_profile) {
+const _findAndInsertUsers = function(db, user_id, user_profile, group_id) {
   return new Promise(resolve => {
     db.collection("users").findOne({
       user_id: user_id
     }).then((user) => {
-      if (user != null) {
+      if (user != null && user.groups.indexOf(group_id) >= 0) {
         console.log("user already registed")
         resolve(true);
+      }
+      else if (user.groups.indexOf(group_id) == -1) {
+        user.groups.push(group_id);
+          db.collection("users").updateOne({
+            user_id: user_id
+          }, {
+            $set: user
+          }).then(() => {
+            console.log("insert group to user");
+            resolve(true);
+          })
       }
       else {
         const pictureUrl = (user_profile.pictureUrl) ? user_profile.pictureUrl : '/images/sample_img.png';
@@ -92,6 +103,7 @@ const _findAndInsertUsers = function(db, user_id, user_profile) {
             user_id: user_id,
             user_name: user_profile.displayName,
             img: pictureUrl,
+            groups: [group_id],
           }
         ).then(() => {
           console.log("create user");
@@ -305,5 +317,19 @@ exports.changeGroupName = function(group_id, group_name) {
         }
       })
     });
+  })
+}
+
+exports.getGroupsByuserId = (user_id) => {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("users").findOne({
+        user_id: user_id
+      }).then((user) => {
+        const groups = user.groups;
+        resolve(groups);
+      })
+    })
   })
 }
