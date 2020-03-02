@@ -321,15 +321,18 @@ exports.changeGroupName = function(group_id, group_name) {
 }
 
 exports.getGroupsByuserId = (user_id) => {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
       const db = client.db(DATABASE);
       db.collection("users").findOne({
         user_id: user_id
       }).then((user) => {
-        exports.getGroupsByGroupIds(user.groups).then(groups => {
-          resolve(groups);
-        })
+        if (!user.groups)
+          reject('groups not exist');
+        else
+          exports.getGroupsByGroupIds(user.groups).then(groups => {
+            resolve(groups);
+          })
       })
     })
   })

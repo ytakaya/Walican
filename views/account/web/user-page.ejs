@@ -25,9 +25,11 @@
     <div id="groups">
       <span>所属グループ</span>
       <ul>
-        <% groups.forEach(group => { %>
-          <li><a href="/account/groups/?groupId=<%= group %>"><%= group %></a></li>
-        <% }); %>
+        <% if (groups) { %>
+          <% groups.forEach(group => { %>
+            <li><a href="/account/groups/?groupId=<%= group.id %>"><%= group.name %></a></li>
+          <% }); %>
+        <% } %>
       </ul>
     </div>
   </div>

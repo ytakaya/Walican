@@ -10,12 +10,12 @@ router.get("/user", authorize(), (req, res) => {
     userImg: req.user.img
   }
   db_logics.getGroupsByuserId(req.user.id).then(groups => {
-    console.log(groups)
     docs.groups = groups;
     res.render('./account/web/user-page.ejs', docs)
   })
     .catch(err => {
       console.log(err);
+      docs.groups = false;
       res.render('./account/web/user-page.ejs', docs)
     })
 });
