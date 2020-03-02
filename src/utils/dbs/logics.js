@@ -272,3 +272,38 @@ exports.getSummaryAndUsers = function(groupId) {
     })
   })
 }
+
+exports.changeGroupName = function(group_id, group_name) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("groups").findOne({
+        group_id: group_id
+      }).then((group) => {
+        if (group != null) {
+          group.name = group_name;
+          db.collection("groups").updateOne({
+            group_id: group_id
+          }, {
+            $set: group
+          }).then(() => {
+            console.log("update groupName");
+            resolve(true);
+          })
+        }
+        else {
+          db.collection("groups").insertOne(
+            {
+              group_id: group_id,
+              name: group_name,
+              users: [],
+            }
+          ).then(() => {
+            console.log("create group");
+            resolve(true);
+          })
+        }
+      })
+    });
+  })
+}

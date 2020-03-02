@@ -6,6 +6,7 @@ const config = {
   channelSecret: process.env.SECRET_KEY
 };
 const client = new line.Client(config);
+const db_logics = require('../src/utils/dbs/logics');
 
 const help = require('../src/help/index');
 const connect = require('../src/connect/index');
@@ -75,6 +76,17 @@ async function getCommand(ev) {
         replyMessageWithToken(ev.replyToken, `${pro.displayName}が認証したよ`);
       }
     })
+  }
+  else if (ev.message.text.split(' ')[0] == '/init') {
+    const groupName = ev.message.text.replace(/\/init /, '');
+    db_logics.changeGroupName(ev.source.groupId, groupName)
+      .then(() => {
+        replyMessageWithToken(ev.replyToken, `グループ名を${groupName}に変更しました😊`);
+      })
+      .catch(err => {
+        console.log(err);
+        replyMessageWithToken(ev.replyToken, `グループ名の変更に失敗しました😢`);
+      })
   }
   else if (ev.message.text == '/rate') {
     return rate.rateReply(client, ev);
