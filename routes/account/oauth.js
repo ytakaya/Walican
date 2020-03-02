@@ -53,4 +53,9 @@ router.get("/getToken", (req1, res1) => {
 
 router.post("/login", authenticate());
 
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect("/oauth");
+});
+
 module.exports = router;
