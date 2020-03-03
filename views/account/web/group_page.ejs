@@ -30,18 +30,10 @@
     <div id="users">
       <span>メンバー</span>
       <ul>
-        <li><img src="/images/sample_img.png" alt=""><span>山田太郎</span></li>
-        <div class="cf"></div>
-        <li><img src="/images/sample_img.png" alt=""><span>鈴木一郎</span></li>
-        <div class="cf"></div>
-        <li><img src="/images/sample_img.png" alt=""><span>鈴木次郎</span></li>
-        <div class="cf"></div>
-        <li><img src="/images/sample_img.png" alt=""><span>山田太郎</span></li>
-        <div class="cf"></div>
-        <li><img src="/images/sample_img.png" alt=""><span>鈴木一郎</span></li>
-        <div class="cf"></div>
-        <li><img src="/images/sample_img.png" alt=""><span>鈴木次郎</span></li>
-        <div class="cf"></div>
+        <% members.forEach(member => { %>
+          <li><img src="<%= member.img %>" alt=""><span><%= member.name %></span></li>
+          <div class="cf"></div>
+        <% }); %>
       </ul>
     </div>
 

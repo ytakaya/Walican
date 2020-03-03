@@ -17,7 +17,10 @@ router.get("/user", authorize(), (req, res) => {
 });
 
 router.get("/groups", authorize(), (req, res) => {
-  res.render('./account/web/group_page.ejs');
+  const group_id = url.parse(req.url, true).query.groupId;
+  db_logics.getUsersByGroupId(group_id).then(users => {
+    res.render('./account/web/group_page.ejs', {members: users});
+  })
 })
 
 module.exports = router;
