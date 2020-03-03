@@ -1,31 +1,47 @@
 const router = require("express").Router();
 const url = require('url');
+const uuid = require('uuid/v1');
 
 const pay = require('../src/pay/index');
 const db_logics = require('../src/utils/dbs/logics');
 const rate = require('../src/utils/rate/index');
 
 router.get("/", (req, res) => {
-  const payId = url.parse(req.url, true).query.payId;
-  db_logics.getUserIdByPayId(payId).then((payment) => {
-    const {parent, user_ids, payment_status} = payment;
-    if (payment_status === 'pending') {
-      db_logics.getUsersByUserIds(user_ids).then((users) => {
-        const doc = {
-          payId: payId,
-          users: users,
-          parent: parent,
-        }
-        res.render("./borrow.ejs", doc);
-      })
-    }
-    else if (payment_status === 'canceled') {
-      res.redirect("/complete/canceledAuth");
-    }
-    else {
-      res.redirect("/complete/alreadySendAuth");
-    }
-  })
+  if (!url.parse(req.url, true).query.payId) {
+    const groupId = url.parse(req.url, true).query.groupId;
+    const parent = req.user.id;
+    const payId = uuid();
+    db_logics.getUsersByGroupId(groupId).then(users => {
+      const doc = {
+        payId: payId,
+        users: users,
+        parent: parent,
+      }
+      res.render("./borrow.ejs", doc);
+    })
+  }
+  else {
+    const payId = url.parse(req.url, true).query.payId;
+    db_logics.getUserIdByPayId(payId).then((payment) => {
+      const {parent, user_ids, payment_status} = payment;
+      if (payment_status === 'pending') {
+        db_logics.getUsersByUserIds(user_ids).then((users) => {
+          const doc = {
+            payId: payId,
+            users: users,
+            parent: parent,
+          }
+          res.render("./borrow.ejs", doc);
+        })
+      }
+      else if (payment_status === 'canceled') {
+        res.redirect("/complete/canceledAuth");
+      }
+      else {
+        res.redirect("/complete/alreadySendAuth");
+      }
+    })
+  }
 });
 
 router.post("/regist", (req, res) => {
