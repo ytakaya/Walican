@@ -10,6 +10,16 @@
   <link rel="stylesheet" href="/stylesheets/account/group-page.css" type="text/css">
 </head>
 <body>
+  <div id="popup" class="hidden">
+    <div id="modal">
+      <ul>
+        <li><button id="back_button">戻る</button></li>
+        <li><a href="/borrow">貸した</a></li>
+        <li><a href="/dutch">割り勘</a></li>
+      </ul>
+    </div>
+  </div>
+
   <%- include("../../share/header.ejs") %>
 
   <div id="main">
@@ -38,6 +48,7 @@
     </div>
 
     <%- include("../../share/menu_script.ejs") %>
+    <%- include("../../share/popup_script.ejs") %>
   </div>
 </body>
 </html>
