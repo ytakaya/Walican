@@ -20,4 +20,8 @@ router.get("/user", authorize(), (req, res) => {
     })
 });
 
+router.get("/groups", authorize(), (req, res) => {
+  res.render('./account/web/group_page.ejs');
+})
+
 module.exports = router;

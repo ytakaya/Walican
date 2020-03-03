@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/stylesheets/account/group-page.css" type="text/css">
 </head>
 <body>
-  <%- include("../../share/header.ejs", {user: true, img: userImg}) %>
+  <%- include("../../share/header.ejs", {user: true, img: locals.user.img}) %>
 
   <div id="main">
     <div id="main_menu">
@@ -30,17 +30,17 @@
     <div id="users">
       <span>メンバー</span>
       <ul>
-        <li><img src="./images/sample_img.png" alt=""><span>山田太郎</span></li>
+        <li><img src="/images/sample_img.png" alt=""><span>山田太郎</span></li>
         <div class="cf"></div>
-        <li><img src="./images/sample_img.png" alt=""><span>鈴木一郎</span></li>
+        <li><img src="/images/sample_img.png" alt=""><span>鈴木一郎</span></li>
         <div class="cf"></div>
-        <li><img src="./images/sample_img.png" alt=""><span>鈴木次郎</span></li>
+        <li><img src="/images/sample_img.png" alt=""><span>鈴木次郎</span></li>
         <div class="cf"></div>
-        <li><img src="./images/sample_img.png" alt=""><span>山田太郎</span></li>
+        <li><img src="/images/sample_img.png" alt=""><span>山田太郎</span></li>
         <div class="cf"></div>
-        <li><img src="./images/sample_img.png" alt=""><span>鈴木一郎</span></li>
+        <li><img src="/images/sample_img.png" alt=""><span>鈴木一郎</span></li>
         <div class="cf"></div>
-        <li><img src="./images/sample_img.png" alt=""><span>鈴木次郎</span></li>
+        <li><img src="/images/sample_img.png" alt=""><span>鈴木次郎</span></li>
         <div class="cf"></div>
       </ul>
     </div>
