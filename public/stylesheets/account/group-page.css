@@ -1,0 +1,119 @@
+/* ========================================
+    main
+========================================= */
+#main {
+  height: 80vh;
+  width: calc(100% - 10vh);
+  padding: 5vh;
+}
+
+#main_menu {
+  text-align: center;
+}
+
+#group_name {
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+#menu_list {
+  height: 60vw;
+  width: 60vw;
+  margin: 3vw auto;
+}
+
+#menu_list li {
+  list-style: none;
+  border: 1px solid black;
+  width: 27vw;
+  height: 27vw;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20%;
+  background-size: 20vw 20vw;
+}
+
+#regist, #history {
+  float: left;
+}
+
+#auth, #summary {
+  float: right;
+}
+
+#regist, #auth {
+  margin-bottom: calc(6vw - 4px);
+}
+
+#menu_list ul li a {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  padding-top: 22vw;
+}
+
+#regist {
+  background: url(/images/regist.png) no-repeat 3.5vw 1vw rgb(221, 98, 114);
+}
+
+#auth {
+  background: url(/images/auth.png) no-repeat 3.5vw 1vw rgb(58, 189, 193);
+}
+
+#history {
+  background: url(/images/history.png) no-repeat 3.5vw 1vw rgb(236, 154, 59);
+}
+
+#summary {
+  background: url(/images/summary.png) no-repeat 3.5vw 1vw rgb(133, 193, 78);
+}
+
+#menu_list ul li:hover {
+  opacity: 0.8;
+}
+
+/* ========================================
+    users
+========================================= */
+#users {
+  margin-top: 5vh;
+}
+
+#users span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#users ul {
+  margin-top: 20px;
+  height: calc(75vh - 66vw - 80px);
+  padding: 15px;
+  border: 1px solid black;
+  overflow: scroll;
+}
+
+#users ul::-webkit-scrollbar {
+  display:none;
+}
+
+#users ul li {
+  list-style: none;
+}
+
+#users ul li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 1px solid black;
+  float: left;
+  margin-top: 5px;
+}
+
+#users ul li span {
+  width: calc(100% - 60px);
+  font-size: 18px;
+  line-height: 50px;
+  padding-left: 10px;
+  display: block;
+  float: left;
+}
