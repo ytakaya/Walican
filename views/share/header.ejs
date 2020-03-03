@@ -9,15 +9,15 @@
     </div>
   </div>
 
-  <% if (user != null) { %>
+  <% if (Object.keys(_locals).indexOf('user') >= 0) { %>
     <div id="profile">
-      <img src="<%= img %>" alt="">
+      <img src="<%= _locals.user.img %>" alt="">
     </div>
   <% } %>
 
   <div class="cf"></div>
 
-  <% if (user != null) { %>
+  <% if (Object.keys(_locals).indexOf('user') >= 0) { %>
     <div id="global_menu" class="hidden">
       <ul>
         <li><a href="/account/user">ユーザーページ</a></li>

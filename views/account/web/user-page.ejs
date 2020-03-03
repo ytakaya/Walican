@@ -10,15 +10,15 @@
   <link rel="stylesheet" href="/stylesheets/account/user-page.css" type="text/css">
 </head>
 <body>
-  <%- include("../../share/header.ejs", {user: true, img: userImg}) %>
+  <%- include("../../share/header.ejs") %>
 
   <div id="main">
     <div id="user_info">
       <div>
-        <img src="<%= userImg %>" alt="">
+        <img src="<%= _locals.user.img %>" alt="">
       </div>
       <div id="name">
-        <span><%= userName %></span>
+        <span><%= _locals.user.name %></span>
       </div>
     </div>
 
