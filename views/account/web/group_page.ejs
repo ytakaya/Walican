@@ -4,28 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Walican | group</title>
-  <link rel="stylesheet" href="init.css">
-  <link rel="stylesheet" href="util.css">
-  <link rel="stylesheet" href="group-page.css">
+  <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/group-page.css" type="text/css">
 </head>
 <body>
-  <header>
-    <div id="menu_button">
-      <button><span>Menu</span></button>
-    </div>
-
-    <div id="logo_wrapper">
-      <div id="header_logo">
-        <h1>Walican</h1>
-      </div>
-    </div>
-
-    <div id="profile">
-      <img src="./images/sample_img.png" alt="">
-    </div>
-
-    <div class="cf"></div>
-  </header>
+  <%- include("../../share/header.ejs", {user: true, img: userImg}) %>
 
   <div id="main">
     <div id="main_menu">
@@ -59,6 +44,8 @@
         <div class="cf"></div>
       </ul>
     </div>
+
+    <%- include("../../share/menu_script.ejs") %>
   </div>
 </body>
 </html>
