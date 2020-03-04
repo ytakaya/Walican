@@ -413,7 +413,20 @@ exports.getPaymentsByGroupId = (group_id) => {
       db.collection("payments").find({
         group_id: group_id,
       }).toArray((error, payments) => {
-        resolve(payments);
+        const parents_id = payments.map(v => {return v.parent});
+        exports.getUsersByUserIds(parents_id).then(parents => {
+          const res = [];
+          for (let i=0; i<parents.length; i++) {
+            res.push({
+              payments_id: payments[i].payments_id,
+              group_id: payments[i].group_id,
+              parent: parents[i].name,
+              date: payments[i].date || '---',
+              amount: payments[i].amount
+            })
+          }
+          resolve(res);
+        })
       });
     })
   })

@@ -26,8 +26,7 @@ router.get("/groups", userInGroup(), (req, res) => {
 router.get("/history", userInGroup(), (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   db_logics.getPaymentsByGroupId(group_id).then(payments => {
-    console.log(payments)
-    res.send(200)
+    res.render('./account/web/history.ejs', {payments: payments});
   })
 })
 

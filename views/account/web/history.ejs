@@ -27,18 +27,14 @@
           <td id="time">日付</td>
           <td id="detail"></td>
         </tr>
-        <tr id="table_data">
-          <td id="owner">山田太郎</td>
-          <td id="amount">3000</td>
-          <td id="time">2020.02.01 17:00</td>
-          <td id="detail"><a href="#">詳細</a></td>
-        </tr>
-        <tr id="table_data">
-          <td id="owner">山田太郎</td>
-          <td id="amount">3000</td>
-          <td id="time">2020.02.01 17:00</td>
-          <td id="detail"><a href="#">詳細</a></td>
-        </tr>
+        <% payments.forEach(payment => { %>
+          <tr id="table_data">
+            <td id="owner"><%= payment.parent %></td>
+            <td id="amount"><%= payment.amount %></td>
+            <td id="time"><%= payment.date %></td>
+            <td id="detail"><a href="/account/payment?payId=<%= payment.payments_id %>&groupId=<%= payment.group_id %>">詳細</a></td>
+          </tr>
+        <% }) %>
       </table>
     </div>
   </div>
