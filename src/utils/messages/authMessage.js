@@ -75,6 +75,8 @@ function createAuthInfo (data, propose, users, parent, method) {
   else
     amount_message = `${String(data.jpy)}円 (${String(data.original)}${visible_rate[data.currency].unit})`
 
+  const amount_per_user = Math.ceil((data.jpy / (users.length + 1)) / 10) * 10;
+
   contents.push({
       "type": "box",
       "layout": "horizontal",
@@ -95,6 +97,17 @@ function createAuthInfo (data, propose, users, parent, method) {
             {
               "type": "span",
               "text": amount_message,
+              "color": '#0077ff'
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "wrap": true,
+          "contents": [
+            {
+              "type": "span",
+              "text": `1人あたり${amount_per_user}`,
               "color": '#0077ff'
             }
           ]
