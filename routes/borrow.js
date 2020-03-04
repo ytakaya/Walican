@@ -7,13 +7,14 @@ const db_logics = require('../src/utils/dbs/logics');
 const rate = require('../src/utils/rate/index');
 
 router.get("/", (req, res) => {
+  const groupId = url.parse(req.url, true).query.groupId;
   if (!url.parse(req.url, true).query.payId) {
-    const groupId = url.parse(req.url, true).query.groupId;
     const parent = req.user.id;
     const payId = uuid();
     db_logics.getUsersByGroupId(groupId).then(users => {
       const doc = {
         payId: payId,
+        groupId: groupId,
         users: users,
         parent: parent,
       }
@@ -28,6 +29,7 @@ router.get("/", (req, res) => {
         db_logics.getUsersByUserIds(user_ids).then((users) => {
           const doc = {
             payId: payId,
+            groupId: groupId,
             users: users,
             parent: parent,
           }
@@ -46,6 +48,8 @@ router.get("/", (req, res) => {
 
 router.post("/regist", (req, res) => {
   //エラーのリダイレクト処理いれる, 選択されてなかったらエラー
+  const group_id = req.body.groupId;
+  const parent = req.body.parent;
   const target_user = req.body.target_user;
   let children = {};
   children[target_user] = false;
@@ -58,17 +62,24 @@ router.post("/regist", (req, res) => {
       jpy: jpy
     };
 
-    db_logics.updatePayments(req.body.payId, {children: children, method: 'borrow', amount: jpy, status: "auth_pending"});
-    db_logics.getGroupIdAndParentByPayId(req.body.payId).then((response) => {
-      db_logics.getUsersByUserIds([target_user]).then((users) => {
-        const user_names = [];
-        users.forEach(user => {
-          user_names.push(user.name);
-        })
-        pay.authBubble(req.body.payId, data, req.body.propose, response.group_id, user_names, response.parent, 'borrow');
-        console.log("ok")
-        res.redirect("/complete/success");
+    const query = {
+      payments_id: req.body.payId,
+      group_id: group_id,
+      parent: parent,
+      children: children, 
+      method: 'borrow', 
+      amount: jpy, 
+      status: "auth_pending"
+    }
+    db_logics.updatePayments(query);
+    db_logics.getUsersByUserIds([target_user]).then((users) => {
+      const user_names = [];
+      users.forEach(user => {
+        user_names.push(user.name);
       })
+      pay.authBubble(req.body.payId, data, req.body.propose, group_id, user_names, parent, 'borrow');
+      console.log("ok")
+      res.redirect("/complete/success");
     })
   })
 })

@@ -185,14 +185,16 @@ exports.getUsersByUserIds = async (user_ids) => {
   return Promise.all(promises);
 }
 
-exports.updatePayments = function(payId, element) {
+exports.updatePayments = function(element) {
   return new Promise(resolve => {
     MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
       const db = client.db(DATABASE);
       db.collection("payments").updateOne({
-        payments_id: payId
+        payments_id: element.payments_id
       }, {
         $set: element
+      }, {
+        upsert: true
       }).then(() => {
         client.close();
       })
