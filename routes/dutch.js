@@ -5,6 +5,7 @@ const uuid = require('uuid/v1');
 const pay = require('../src/pay/index');
 const db_logics = require('../src/utils/dbs/logics');
 const rate = require('../src/utils/rate/index');
+const date = require('../src/utils/date');
 
 
 router.get("/", (req, res) => {
@@ -18,6 +19,7 @@ router.get("/", (req, res) => {
         groupId: groupId,
         users: users,
         parent: parent,
+        newData: 'yes',
       }
       res.render("./dutch.ejs", doc);
     })
@@ -33,6 +35,7 @@ router.get("/", (req, res) => {
             groupId: groupId,
             users: users,
             parent: parent,
+            newData: 'no',
           }
           res.render("./dutch.ejs", doc);
         })
@@ -77,6 +80,9 @@ router.post("/regist", (req, res) => {
       amount: jpy, 
       status: "auth_pending"
     }
+    if (req.body.newData == 'yes')
+      query.date = date.getDate()
+
     db_logics.updatePayments(query);
 
     const user_ids = [];

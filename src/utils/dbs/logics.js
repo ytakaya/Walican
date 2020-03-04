@@ -1,5 +1,6 @@
 const {CONNECTION_URL, DATABASE, OPTIONS} = require("../../../config/mongodb.config");
 const MongoClient = require("mongodb").MongoClient;
+const date = require("../date");
 
 exports.insertPayments = function(parent_user, group_id, payment_id) {
   MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
@@ -12,6 +13,7 @@ exports.insertPayments = function(parent_user, group_id, payment_id) {
         amount: 0,
         children: {},
         status: "pending",
+        date: date.getDate()
       }
     ).catch(() => {
       console.log(error);
