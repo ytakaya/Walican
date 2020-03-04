@@ -11,9 +11,9 @@ const authMessage = require('../utils/messages/authMessage');
 const db_logics = require('../utils/dbs/logics.js');
 
 exports.payBubble = function(client, ev) {
-  questionButtonMessage().then(res => {
+  const {userId, groupId} = ev.source;
+  questionButtonMessage(groupId).then(res => {
     const {paymentId, questionButton} = res;
-    const {userId, groupId} = ev.source;
     const replyToken = ev.replyToken;
     db_logics.insertPayments(userId, groupId, paymentId);
 
