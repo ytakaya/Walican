@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walican | user</title>
+  <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/history.css" type="text/css">
+</head>
+<body>
+
+  <%- include("../../share/header.ejs") %>
+
+  <div id="main">
+    <div id="main_menu">
+      <span id="group_name">グループ名</span> <br>
+      <span id="history_title">Walican履歴</span>
+    </div>
+
+    <div id="history">
+      <table>
+        <tr id="table_header">
+          <td id="owner">オーナー</td>
+          <td id="amount">金額</td>
+          <td id="time">日付</td>
+          <td id="detail"></td>
+        </tr>
+        <tr id="table_data">
+          <td id="owner">山田太郎</td>
+          <td id="amount">3000</td>
+          <td id="time">2020.02.01 17:00</td>
+          <td id="detail"><a href="#">詳細</a></td>
+        </tr>
+        <tr id="table_data">
+          <td id="owner">山田太郎</td>
+          <td id="amount">3000</td>
+          <td id="time">2020.02.01 17:00</td>
+          <td id="detail"><a href="#">詳細</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <%- include("../../share/menu_script.ejs") %>
+</body>
+</html>
