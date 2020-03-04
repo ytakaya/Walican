@@ -367,6 +367,23 @@ exports.getGroupsByGroupIds = async (group_ids) => {
   return Promise.all(promises);
 }
 
+exports.getUserIdsByGroupId = (group_id) => {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("groups").findOne({
+        group_id: group_id
+      }).then((group) => {
+        resolve(group.users);
+      }).catch((error) => {
+        throw error;
+      }).then(() => {
+        client.close();
+      });
+    });
+  })
+}
+
 exports.getUsersByGroupId = (group_id) => {
   return new Promise(resolve => {
     MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
