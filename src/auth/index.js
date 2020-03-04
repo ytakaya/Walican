@@ -11,7 +11,7 @@ exports.authUserByPayId = function(userId, payId) {
         if (Object.values(payment.children).indexOf(false) == -1) {
           //認証完了の処理
           db_logics.insertSummary(
-            payment.payment_id, 
+            payment.payments_id, 
             payment.group_id, 
             payment.parent, 
             payment.amount, 

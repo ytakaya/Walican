@@ -403,3 +403,16 @@ exports.getUsersByGroupId = (group_id) => {
     });
   })
 }
+
+exports.getPaymentsByGroupId = (group_id) => {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("payments").find({
+        group_id: group_id,
+      }).toArray((error, payments) => {
+        resolve(payments);
+      });
+    })
+  })
+}
