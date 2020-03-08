@@ -30,4 +30,10 @@ router.get("/history", userInGroup(), (req, res) => {
   })
 })
 
+router.get("/payment", userInGroup(), (req, res) => {
+  const group_id = url.parse(req.url, true).query.groupId;
+  const pay_id = url.parse(req.url, true).query.payId;
+  res.send(200)
+})
+
 module.exports = router;
