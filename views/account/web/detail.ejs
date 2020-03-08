@@ -14,7 +14,7 @@
   <%- include("../../share/header.ejs") %>
 
   <div id="back_button">
-    <a href="#">Walican履歴へ戻る</a>
+    <a href="/history?groupId=<%= group_id %>">Walican履歴へ戻る</a>
   </div>
 
   <div id="main">
@@ -24,19 +24,19 @@
         <table>
           <tr>
             <td class="t-header">目的</td>
-            <td class="t-data">焼肉</td>
+            <td class="t-data"><%= payment.purpose %></td>
           </tr>
           <tr>
             <td class="t-header">金額</td>
-            <td class="t-data">6000</td>
+            <td class="t-data"><%= payment.amount %></td>
           </tr>
           <tr>
             <td class="t-header">オーナー</td>
-            <td class="t-data">鈴木一郎</td>
+            <td class="t-data"><%= parent.name %></td>
           </tr>
           <tr>
             <td class="t-header">方法</td>
-            <td class="t-data">割り勘</td>
+            <td class="t-data"><%= payment.method %></td>
           </tr>
         </table>
       </div>

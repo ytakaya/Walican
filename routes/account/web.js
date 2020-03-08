@@ -34,11 +34,23 @@ router.get("/history", userInGroup(), (req, res) => {
   })
 })
 
-router.get("/payment", userInGroup(), (req, res) => {
+router.get("/payment", (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   const pay_id = url.parse(req.url, true).query.payId;
-  console.log(group_id, pay_id)
-  res.render('./account/web/detail.ejs');
+  db_logics.getPaymentByPayId(pay_id).then(payment => {
+    payment.purpose = payment.purpose || '---';
+    db_logics.getUserByUserId(payment.parent).then(parent => {
+      db_logics.getUsersByUserIds(Object.keys(payment.children)).then(children => {
+        const docs = {
+          payment: payment,
+          group_id: group_id,
+          parent: parent,
+          children: children,
+        }
+        res.render('./account/web/detail.ejs', docs);
+      })
+    })
+  })
 })
 
 module.exports = router;
