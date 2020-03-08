@@ -2,6 +2,7 @@ const router = require("express").Router();
 const url = require('url');
 const { authorize, userInGroup } = require("../../lib/security/accountcontrol");
 const db_logics = require('../..//src/utils/dbs/logics');
+const pay_method = require('../../config/app.config').pay_method;
 
 router.get("/user", authorize(), (req, res) => {
   const docs = {};
@@ -38,7 +39,8 @@ router.get("/payment", (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   const pay_id = url.parse(req.url, true).query.payId;
   db_logics.getPaymentByPayId(pay_id).then(payment => {
-    payment.purpose = payment.purpose || '---';
+    payment.propose = payment.propose || '---';
+    payment.method = pay_method[payment.method];
     db_logics.getUserByUserId(payment.parent).then(parent => {
       db_logics.getUsersByUserIds(Object.keys(payment.children)).then(children => {
         const docs = {
