@@ -73,6 +73,7 @@ router.post("/regist", (req, res) => {
 
     const query = {
       payments_id: req.body.payId,
+      propose: req.body.propose || '---',
       group_id: group_id,
       parent: parent,
       children: children, 
