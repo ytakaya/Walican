@@ -395,7 +395,10 @@ exports.getUsersByGroupId = (group_id) => {
       }).then((group) => {
         exports.getUsersByUserIds(group.users)
           .then(users => {
-            resolve(users);
+            resolve({
+              users: users,
+              group: group
+            });
           })
       }).catch((error) => {
         throw error;
