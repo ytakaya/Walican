@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walican | detail</title>
+  <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/detail.css" type="text/css">
+</head>
+<body>
+
+  <%- include("../../share/header.ejs") %>
+
+  <div id="back_button">
+    <a href="#">Walican履歴へ戻る</a>
+  </div>
+
+  <div id="main">
+    <div id="main_menu">
+      <span id="main_title">Walican詳細</span>
+      <div id="walican_table">
+        <table>
+          <tr>
+            <td class="t-header">目的</td>
+            <td class="t-data">焼肉</td>
+          </tr>
+          <tr>
+            <td class="t-header">金額</td>
+            <td class="t-data">6000</td>
+          </tr>
+          <tr>
+            <td class="t-header">オーナー</td>
+            <td class="t-data">鈴木一郎</td>
+          </tr>
+          <tr>
+            <td class="t-header">方法</td>
+            <td class="t-data">割り勘</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="users">
+      <span>メンバー</span>
+      <ul>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>山田太郎</span>
+          <a href="#">test</a>
+        </li>
+        <div class="cf"></div>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>鈴木一郎</span>
+          <a href="#">test</a>
+        </li>
+        <div class="cf"></div>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>鈴木次郎</span>
+          <a href="#">test</a>
+        </li>
+        <div class="cf"></div>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>山田太郎</span>
+          <a href="#">test</a>
+        </li>
+        <div class="cf"></div>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>鈴木一郎</span>
+          <a href="#">test</a>
+        </li>
+        <div class="cf"></div>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>鈴木次郎</span>
+          <a href="#">test</a>
+        </li>
+        <div class="cf"></div>
+      </ul>
+    </div>
+  </div>
+
+  <%- include("../../share/menu_script.ejs") %>
+</body>
+</html>

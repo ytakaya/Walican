@@ -38,7 +38,7 @@ router.get("/payment", userInGroup(), (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   const pay_id = url.parse(req.url, true).query.payId;
   console.log(group_id, pay_id)
-  res.send(200)
+  res.render('./account/web/detail.ejs');
 })
 
 module.exports = router;

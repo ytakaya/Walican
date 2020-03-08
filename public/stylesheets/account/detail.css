@@ -1,0 +1,114 @@
+/* ========================================
+    main
+========================================= */
+#main {
+  height: auto;
+  width: calc(100% - 10vh);
+  margin: 0 auto;
+}
+
+#back_button a {
+  font-size: 16px;
+  line-height: 40px;
+  background: url(/images/back-icon.png) no-repeat left 5px;
+  background-size: 30px 30px;
+  display: block;
+  padding-left: 35px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#back_button a:hover {
+  opacity: 0.8;
+}
+
+#main_menu {
+  text-align: center;
+}
+
+#main_title {
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+#walican_table {
+  margin-top: 20px;
+}
+
+#walican_table table {
+  width: 100%;
+}
+
+#walican_table table tr td {
+  border: 1px solid black;
+  font-size: 18px;
+  height: auto;
+  padding: 11px 0;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.t-header {
+  width: 200px;
+  background-color: rgb(216, 242, 255);
+}
+
+.t-data {
+  width: 70%;
+}
+
+/* ========================================
+    users
+========================================= */
+#users {
+  margin-top: 5vh;
+}
+
+#users span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#users ul {
+  height: auto;
+  padding: 15px;
+  overflow: scroll;
+}
+
+#users ul::-webkit-scrollbar {
+  display:none;
+}
+
+#users ul li {
+  list-style: none;
+}
+
+#users ul li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 1px solid black;
+  float: left;
+  margin-top: 5px;
+}
+
+#users ul li span {
+  font-size: 18px;
+  line-height: 50px;
+  padding-left: 10px;
+  display: block;
+  float: left;
+}
+
+#users ul li a {
+  float: right;
+  font-size: 18px;
+  padding: 6px;
+  margin-right: 20px;
+  margin-top: 10px;
+  display: block;
+  border: 1px solid gray;
+  border-radius: 20%;
+  background-color: salmon;
+}
