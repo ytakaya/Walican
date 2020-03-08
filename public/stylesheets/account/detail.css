@@ -110,5 +110,12 @@
   display: block;
   border: 1px solid gray;
   border-radius: 20%;
+}
+
+.done {
   background-color: salmon;
+}
+
+.doing {
+  background-color: rgb(58, 189, 193);
 }

@@ -35,7 +35,7 @@ router.get("/history", userInGroup(), (req, res) => {
   })
 })
 
-router.get("/payment", (req, res) => {
+router.get("/payment", userInGroup(), (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   const pay_id = url.parse(req.url, true).query.payId;
   db_logics.getPaymentByPayId(pay_id).then(payment => {

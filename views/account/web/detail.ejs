@@ -45,42 +45,18 @@
     <div id="users">
       <span>メンバー</span>
       <ul>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>山田太郎</span>
-          <a href="#">test</a>
-        </li>
-        <div class="cf"></div>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>鈴木一郎</span>
-          <a href="#">test</a>
-        </li>
-        <div class="cf"></div>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>鈴木次郎</span>
-          <a href="#">test</a>
-        </li>
-        <div class="cf"></div>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>山田太郎</span>
-          <a href="#">test</a>
-        </li>
-        <div class="cf"></div>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>鈴木一郎</span>
-          <a href="#">test</a>
-        </li>
-        <div class="cf"></div>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>鈴木次郎</span>
-          <a href="#">test</a>
-        </li>
-        <div class="cf"></div>
+        <% children.forEach(u => { %>
+          <li>
+            <img src="<%= u.img %>" alt="">
+            <span><%= u.name %></span>
+            <% if (payment.children[u.id]) { %>
+              <a href="#" class="done">承認済</a>
+            <% } else { %>
+              <a href="#" class="doing">未承認</a>
+            <% } %>
+          </li>
+          <div class="cf"></div>
+        <% }) %>
       </ul>
     </div>
   </div>
