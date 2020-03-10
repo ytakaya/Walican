@@ -1,5 +1,17 @@
 version: "3"
 services:
+  # https-portal:
+  #   image: steveltn/https-portal:1
+  #   ports:
+  #     - '80:80'
+  #     - '443:443'
+  #   links:
+  #     - web
+  #   restart: always
+  #   environment:
+  #     # STAGE: 'production'
+  #     DOMAINS: 'walican.work => www.walican.work, www.walican.work -> http://web:8080'
+  #     # FORCE_RENEW: 'true'
   web:
     build: .
     volumes:
