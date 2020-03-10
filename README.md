@@ -5,15 +5,15 @@ It is a product that combines a line bot and a web application for managing mone
 
 # DEMO
 
-<div style="text-align:center;">
-<img src="./public/images/readme/group-page.png" style="width:250px;">
-<p style="margin-top: 0; font-weight:bold;">Group Page</p><br>
+<div align="center">
+<img src="./public/images/readme/group-page.png" width="250px">
+<p style="text-align: center;">Group Page</p><br>
 
-<img src="./public/images/readme/walican.png" style="width:250px;">
-<p style="margin-top: 0; font-weight:bold;">Regist Borrowing Page</p><br>
+<img src="./public/images/readme/walican.png" width="250px">
+<p style="text-align: center;">Regist Borrowing Page</p><br>
 
-<img src="./public/images/readme/walican-detail.png" style="width:250px;">
-<p style="margin-top: 0; font-weight:bold;">Borrowing Detail Page</p><br>
+<img src="./public/images/readme/walican-detail.png" width="250px">
+<p style="text-align: center;">Borrowing Detail Page</p><br>
 </div>
 
 # Features
