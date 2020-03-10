@@ -13,11 +13,11 @@ router.get("/", (req, res) => {
   if (!url.parse(req.url, true).query.payId) {
     const parent = req.user.id;
     const payId = uuid();
-    db_logics.getUsersByGroupId(groupId).then(users => {
+    db_logics.getUsersByGroupId(groupId).then(value => {
       const doc = {
         payId: payId,
         groupId: groupId,
-        users: users,
+        users: value.users,
         parent: parent,
         newData: 'yes',
       }
