@@ -35,6 +35,10 @@ $ mkdir db
 
 2. Settings for using LINE api.
 ```
+$ touch .env
+```
+
+```
 # .env
 
 SECRET_KEY={your channel access key}
