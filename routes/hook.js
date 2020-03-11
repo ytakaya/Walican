@@ -7,6 +7,7 @@ const config = {
 };
 const client = new line.Client(config);
 const db_logics = require('../src/utils/dbs/logics');
+const HOST_URL = process.env.HOST_URL;
 
 const help = require('../src/help/index');
 const connect = require('../src/connect/index');
@@ -90,6 +91,10 @@ async function getCommand(ev) {
   }
   else if (ev.message.text == '/rate') {
     return rate.rateReply(client, ev);
+  }
+  else if (ev.message.text == '/host') {
+    replyMessageWithToken(ev.replyToken, HOST_URL);
+    return;
   }
 }
 
