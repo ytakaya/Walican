@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const url = require('url');
 const { authorize, userInGroup } = require("../../lib/security/accountcontrol");
-const db_logics = require('../..//src/utils/dbs/logics');
+const db_logics = require('../../src/utils/dbs/logics');
 const pay_method = require('../../config/app.config').pay_method;
+const summary_logics = require('../../src/summary/index');
 
 router.get("/user", authorize(), (req, res) => {
   const docs = {};
@@ -54,5 +55,19 @@ router.get("/payment", userInGroup(), (req, res) => {
     })
   })
 })
+
+router.get("/summary", (req, res) => {
+  const group_id = url.parse(req.url, true).query.groupId;
+  db_logics.getSummaryAndUsers(group_id).then(value => {
+    const datas = value.datas;
+    const users = value.users;
+    summary_logics.payoff(datas, users).then(summary => {
+      const user_id = req.user.id;
+      db_logics.getUsersByUserIds(Object.keys(summary[user_id])).then(members => {
+        res.send(members)
+      })
+    })
+  })
+});
 
 module.exports = router;

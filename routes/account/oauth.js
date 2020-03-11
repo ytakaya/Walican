@@ -4,7 +4,7 @@ const url = require('url');
 const request = require('request');
 const { authenticate } = require("../../lib/security/accountcontrol");
 
-const db_logics = require('../src/utils/dbs/logics');
+const db_logics = require('../../src/utils/dbs/logics');
 const CHANNEL_ID = process.env.CHANNEL_ID;
 const CHANNEL_SECRET = process.env.CHANNEL_SECRET;
 const Callback_URL = `${process.env.HOST_URL}/oauth/getToken`;
