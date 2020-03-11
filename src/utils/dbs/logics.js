@@ -434,3 +434,18 @@ exports.getPaymentsByGroupId = (group_id) => {
     })
   })
 }
+
+exports.updateUser = function(element) {
+  MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+    const db = client.db(DATABASE);
+    db.collection("users").updateOne({
+      user_id: element.user_id
+    }, {
+      $set: element
+    }, {
+      upsert: true
+    }).then(() => {
+      client.close();
+    })
+  })
+}

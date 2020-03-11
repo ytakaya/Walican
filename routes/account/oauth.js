@@ -4,7 +4,7 @@ const url = require('url');
 const request = require('request');
 const { authenticate } = require("../../lib/security/accountcontrol");
 
-// const db_logics = require('../src/utils/dbs/logics');
+const db_logics = require('../src/utils/dbs/logics');
 const CHANNEL_ID = process.env.CHANNEL_ID;
 const CHANNEL_SECRET = process.env.CHANNEL_SECRET;
 const Callback_URL = `${process.env.HOST_URL}/oauth/getToken`;
@@ -44,8 +44,12 @@ router.get("/getToken", (req1, res1) => {
       request.get(q2, (err, req3, res3) => {
         if (err) console.log(err);
         else {
-          const docs = JSON.parse(res3)
-          console.log(docs)
+          const docs = JSON.parse(res3);
+          db_logics.updateUser({
+            user_id: docs.userId,
+            user_name: docs.displayName,
+            img: docs.pictureUrl,
+          });
           res1.render('./account/oauth/login-confirm.ejs', docs);
         }
       })
