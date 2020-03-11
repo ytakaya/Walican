@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walican | summary</title>
+  <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/summary.css" type="text/css">
+</head>
+<body>
+
+  <%- include("../../share/header.ejs") %>
+
+  <div id="back_button">
+    <a href="#">Walican履歴へ戻る</a>
+  </div>
+
+  <div id="main">
+    <div id="main_menu">
+      <span id="main_title">Summary</span>
+    </div>
+
+    <div id="users">
+      <ul>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>山田太郎</span>
+          <p class="amount blue">1000</p>
+        </li>
+        <div class="cf"></div>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>鈴木一郎</span>
+          <p class="amount blue">1000</p>
+        </li>
+        <div class="cf"></div>
+        <li>
+          <img src="./images/sample_img.png" alt="">
+          <span>鈴木次郎</span>
+          <p class="amount red">1000</p>
+        </li>
+        <div class="cf"></div>
+      </ul>
+    </div>
+  </div>
+
+  <%- include("../../share/menu_script.ejs") %>
+</body>
+</html>

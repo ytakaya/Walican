@@ -64,7 +64,11 @@ router.get("/summary", (req, res) => {
     summary_logics.payoff(datas, users).then(summary => {
       const user_id = req.user.id;
       db_logics.getUsersByUserIds(Object.keys(summary[user_id])).then(members => {
-        res.send(members)
+        const docs = {
+          members: members,
+          datas: summary[user_id]
+        }
+        res.render('./account/web/detail.ejs', docs);
       })
     })
   })
