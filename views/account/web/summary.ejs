@@ -14,7 +14,7 @@
   <%- include("../../share/header.ejs") %>
 
   <div id="back_button">
-    <a href="#">Walican履歴へ戻る</a>
+    <a href="/account/groups?groupId=<%= group_id %>">グループページへ戻る</a>
   </div>
 
   <div id="main">
@@ -24,24 +24,18 @@
 
     <div id="users">
       <ul>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>山田太郎</span>
-          <p class="amount blue">1000</p>
-        </li>
-        <div class="cf"></div>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>鈴木一郎</span>
-          <p class="amount blue">1000</p>
-        </li>
-        <div class="cf"></div>
-        <li>
-          <img src="./images/sample_img.png" alt="">
-          <span>鈴木次郎</span>
-          <p class="amount red">1000</p>
-        </li>
-        <div class="cf"></div>
+        <% members.forEach(member =>{ %>
+          <% if (member.id != _locals.user.id) { %>
+            <li>
+              <img src="<%= member.img %>" alt="">
+              <span><%= member.name %></span>
+              <p class="amount <%= (datas[member.id]<0) ? 'red' : 'blue' %>">
+                <%= datas[member.id] %>
+              </p>
+            </li>
+            <div class="cf"></div>
+          <% } %>
+        <% }) %>
       </ul>
     </div>
   </div>

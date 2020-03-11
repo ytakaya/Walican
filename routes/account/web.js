@@ -56,7 +56,7 @@ router.get("/payment", userInGroup(), (req, res) => {
   })
 })
 
-router.get("/summary", (req, res) => {
+router.get("/summary", userInGroup(), (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   db_logics.getSummaryAndUsers(group_id).then(value => {
     const datas = value.datas;
@@ -66,9 +66,10 @@ router.get("/summary", (req, res) => {
       db_logics.getUsersByUserIds(Object.keys(summary[user_id])).then(members => {
         const docs = {
           members: members,
-          datas: summary[user_id]
+          datas: summary[user_id],
+          group_id: group_id
         }
-        res.render('./account/web/detail.ejs', docs);
+        res.render('./account/web/summary.ejs', docs);
       })
     })
   })
