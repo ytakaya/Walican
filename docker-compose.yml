@@ -10,7 +10,7 @@ services:
   #   restart: always
   #   environment:
   #     # STAGE: 'production'
-  #     DOMAINS: 'walican.work => www.walican.work, www.walican.work -> http://web:8080'
+  #     DOMAINS: 'walican.work -> http://web:8080'
   #     # FORCE_RENEW: 'true'
   web:
     build: .
