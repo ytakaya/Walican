@@ -107,7 +107,7 @@ function createAuthInfo (data, propose, users, parent, method) {
           "contents": [
             {
               "type": "span",
-              "text": `1人あたり${amount_per_user}円`,
+              "text": `${amount_per_user}円/人`,
               "color": '#0077ff'
             }
           ]
