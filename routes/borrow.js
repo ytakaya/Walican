@@ -79,6 +79,7 @@ router.post("/regist", (req, res) => {
       query.date = date.getDate()
 
     db_logics.updatePayments(query);
+    db_logics.insertWaitings([{payments_id: req.body.payId, group_id: group_id, user: target_user}]);
     db_logics.getUsersByUserIds([target_user]).then((users) => {
       const user_names = [];
       users.forEach(user => {

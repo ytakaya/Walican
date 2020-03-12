@@ -449,3 +449,16 @@ exports.updateUser = function(element) {
     })
   })
 }
+
+exports.insertWaitings = function(documents) {
+  MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+    const db = client.db(DATABASE);
+    db.collection("waitings").insertMany(
+      documents,
+    ).catch(() => {
+      console.log(error);
+    }).then(() => {
+      client.close();
+    });
+  }); 
+};

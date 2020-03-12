@@ -56,11 +56,18 @@ router.post("/regist", (req, res) => {
   const parent = req.body.parent;
 
   const children = {}
+  const waiting_docs = [];
   req.body.target_users.forEach(target_user => {
     if (target_user === parent)
       children[target_user] = true;
-    else
+    else {
       children[target_user] = false;
+      waiting_docs.push({
+        payments_id: req.body.payId,
+        group_id: group_id,
+        user: target_user,
+      });
+    }
   })
 
   rate.currencyConvert(req.body.amount, req.body.currency).then(converted_amount => {
@@ -77,7 +84,7 @@ router.post("/regist", (req, res) => {
       group_id: group_id,
       parent: parent,
       children: children, 
-      method: 'borrow', 
+      method: 'dutch', 
       amount: jpy, 
       status: "auth_pending"
     }
@@ -85,6 +92,7 @@ router.post("/regist", (req, res) => {
       query.date = date.getDate()
 
     db_logics.updatePayments(query);
+    db_logics.insertWaitings(waiting_docs);
 
     const user_ids = [];
     Object.keys(children).forEach(id => {
@@ -95,7 +103,7 @@ router.post("/regist", (req, res) => {
       users.forEach(user => {
         user_names.push(user.name);
       })
-      pay.authBubble(req.body.payId, data, req.body.propose, group_id, user_names, parent, 'dutch');
+      // pay.authBubble(req.body.payId, data, req.body.propose, group_id, user_names, parent, 'dutch');
       console.log("ok")
       res.redirect("/complete/success");
     })
