@@ -76,43 +76,46 @@ function createAuthInfo (data, propose, users, parent, method) {
     amount_message = `${String(data.jpy)}円 (${String(data.original)}${visible_rate[data.currency].unit})`
 
   const amount_per_user = Math.ceil((data.jpy / (users.length + 1)) / 10) * 10;
+  const payinfo_contents = [
+    {
+      "type": "text",
+      "contents": [
+        {
+          "type": "span",
+          "text": `金額💴:`
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "wrap": true,
+      "contents": [
+        {
+          "type": "span",
+          "text": amount_message,
+          "color": '#0077ff'
+        }
+      ]
+    }
+  ]
+
+  if (method == 'dutch')
+    payinfo_contents.push({
+      "type": "text",
+      "wrap": true,
+      "contents": [
+        {
+          "type": "span",
+          "text": `${amount_per_user}円/人`,
+          "color": '#0077ff'
+        }
+      ]
+    })
 
   contents.push({
       "type": "box",
       "layout": "horizontal",
-      "contents": [
-        {
-          "type": "text",
-          "contents": [
-            {
-              "type": "span",
-              "text": `金額💴:`
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "wrap": true,
-          "contents": [
-            {
-              "type": "span",
-              "text": amount_message,
-              "color": '#0077ff'
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "wrap": true,
-          "contents": [
-            {
-              "type": "span",
-              "text": `${amount_per_user}円/人`,
-              "color": '#0077ff'
-            }
-          ]
-        }
-      ]
+      "contents": payinfo_contents
     }
   )
 
