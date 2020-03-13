@@ -2,6 +2,10 @@ const db_logics = require('../utils/dbs/logics');
 
 exports.authUserByPayId = function(userId, payId) {
   return new Promise(resolve => {
+    db_logics.deleteWaiting({
+      user: user_id,
+      payments_id: payId,
+    })
     db_logics.getPaymentByPayId(payId).then(payment => {
       let user_status = payment.children[userId];
       if (user_status == null) resolve('invalidUser');

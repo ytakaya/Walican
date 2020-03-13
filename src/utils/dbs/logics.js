@@ -462,3 +462,16 @@ exports.insertWaitings = function(documents) {
     });
   }); 
 };
+
+exports.deleteWaiting = function(query) {
+  MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+    const db = client.db(DATABASE);
+    db.collection("waitings").deleteOne(
+      query,
+    ).catch(() => {
+      console.log(error);
+    }).then(() => {
+      client.close();
+    });
+  }); 
+}
