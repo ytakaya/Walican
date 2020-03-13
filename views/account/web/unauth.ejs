@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walican | user</title>
+  <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/unauth.css" type="text/css">
+</head>
+<body>
+
+  <%- include("../../share/header.ejs") %>
+
+  <div id="main">
+    <div id="main_menu">
+      <span id="history_title">未承認リスト</span>
+    </div>
+
+    <div id="history">
+      <table>
+        <tr id="table_header">
+          <td id="owner">オーナー</td>
+          <td id="amount">金額</td>
+          <td id="time">目的</td>
+          <td id="detail"></td>
+        </tr>
+        <% waitings.forEach(waiting => { %>
+          <tr class="table_data">
+            <td id="owner"><%= waiting.parent %></td>
+            <% if (waiting.method == 'borrow') { %>
+              <td class="amount"><%= waiting.amount %> 円</td>
+            <% } else { %>
+              <td class="amount"><%= Math.ceil((waiting.amount / Object.keys(waiting.children).length) / 10) * 10 %> 円/人</td>
+            <% } %>
+            <td class="propose"><%= waiting.propose || 'なし' %></td>
+            <td class="auth"><a href="#">承認</a></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </div>
+
+  <%- include("../../share/menu_script.ejs") %>
+</body>
+</html>

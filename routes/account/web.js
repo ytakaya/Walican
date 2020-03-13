@@ -79,7 +79,7 @@ router.get("/unauth", (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   const user_id = req.user.id;
   db_logics.getWaitingsList(user_id, group_id).then(waitings => {
-    res.send(waitings);
+    res.render('./account/web/unauth.ejs', {waitings: waitings});
   })
 })
 
