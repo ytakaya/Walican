@@ -475,3 +475,28 @@ exports.deleteWaiting = function(query) {
     });
   }); 
 }
+
+exports.getPaymentsByPayIds = async (pay_ids) => {
+  const promises = [];
+  pay_ids.forEach(pay_id => {
+    promises.push(exports.getPaymentByPayId(pay_id));
+  })
+  return Promise.all(promises);
+}
+
+exports.getWaitingsList = (user_id, group_id) => {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      db.collection("waitings").find({
+        user: user_id,
+        group_id: group_id,
+      }).toArray((error, waitings) => {
+        const pay_ids = waitings.map(v => {return v.payments_id})
+        exports.getPaymentsByPayIds(pay_ids).then(payments => {
+          resolve(payments);
+        })
+      });
+    })
+  })
+}
