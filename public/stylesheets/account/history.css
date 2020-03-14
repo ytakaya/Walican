@@ -41,17 +41,18 @@
 #history table {
   width: 100%;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 #table_header {
   line-height: 40px;
-  font-size: 18px;
   font-weight: bold;
 }
 
 #table_header #owner,
 #table_header #amount,
 #table_header #time {
+  font-size: 16px;
   border: 1px solid gray;
   background-color: rgb(216, 242, 255);
 }

@@ -5,6 +5,7 @@ const db_logics = require('../../src/utils/dbs/logics');
 const pay_method = require('../../config/app.config').pay_method;
 const summary_logics = require('../../src/summary/index');
 const auth_logics = require('../../src/auth/index');
+const format_date = require('../../src/utils/date').formatDate;
 
 router.get("/user", authorize(), (req, res) => {
   const docs = {};
@@ -30,6 +31,10 @@ router.get("/groups", userInGroup(), (req, res) => {
 router.get("/history", userInGroup(), (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   db_logics.getPaymentsByGroupId(group_id).then(payments => {
+    payments.map(payment => {
+      payment.date = format_date(payment.date);
+      return payment;
+    })
     db_logics.getUsersByGroupId(group_id).then(value => {
       const {group} = value;
       res.render('./account/web/history.ejs', {payments: payments, group_name: group.name});
