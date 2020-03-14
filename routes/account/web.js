@@ -75,11 +75,18 @@ router.get("/summary", userInGroup(), (req, res) => {
   })
 });
 
-router.get("/unauth", (req, res) => {
+router.get("/unauth", userInGroup(), (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
   const user_id = req.user.id;
   db_logics.getWaitingsList(user_id, group_id).then(waitings => {
-    res.render('./account/web/unauth.ejs', {waitings: waitings});
+    const user_ids = waitings.map(v => v.parent);
+    db_logics.getUsersByUserIds(user_ids).then(users => {
+      let user_info = {};
+      users.forEach(u => {
+        user_info[u.id] = {name: u.name, img: u.img}
+      })
+      res.render('./account/web/unauth.ejs', {waitings: waitings, user_info: user_info});
+    })
   })
 })
 

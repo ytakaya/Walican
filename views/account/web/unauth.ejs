@@ -39,7 +39,7 @@
         </tr>
         <% waitings.forEach(waiting => { %>
           <tr class="table_data" id="<%= waiting.payments_id %>">
-            <td class="owner"><%= waiting.parent %></td>
+            <td class="owner"><%= user_info[waiting.parent].name %></td>
             <% if (waiting.method == 'borrow') { %>
               <td class="amount"><%= waiting.amount %> 円</td>
             <% } else { %>
