@@ -7,6 +7,10 @@ const summary_logics = require('../../src/summary/index');
 const auth_logics = require('../../src/auth/index');
 const format_date = require('../../src/utils/date').formatDate;
 
+router.get("/help", (req, res) => {
+  res.render('./account/help.ejs')
+})
+
 router.get("/user", authorize(), (req, res) => {
   const docs = {};
   db_logics.getGroupsByuserId(req.user.id).then(groups => {
