@@ -1,4 +1,66 @@
 /* ========================================
+    popup
+========================================= */
+#popup {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal {
+  position: fixed;
+  width: 70vw;
+  height: 50vh;
+  background-color: #fff;
+  margin: 25vh 15vw;
+  border: solid 1px gray;
+  border-radius: 10%;
+}
+
+#modal ul li button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 13px;
+  font-weight: bold;
+  width: auto;
+  line-height: 30px;
+  background: url(/images/x.png) no-repeat 0 5px;
+  background-size: 20px 20px;
+  padding-left: 22px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin: 10px;
+  appearance: none;
+}
+
+#modal ul li {
+  height: 10vh;
+  text-align: center;
+  list-style: none;
+}
+
+#modal ul li span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#modal ul li a {
+  border: 2px solid gray;
+  background-color: rgb(0, 193, 40);
+  border-radius: 20%;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  width: auto;
+  height: 60px;
+  padding: 15px;
+}
+
+/* ========================================
     main
 ========================================= */
 #main {
@@ -44,7 +106,7 @@
 
 #table_header #owner,
 #table_header #amount,
-#table_header #time {
+#table_header #propose {
   border: 1px solid gray;
   background-color: rgb(216, 242, 255);
 }
@@ -60,7 +122,7 @@
 
 .table_data .amount,
 .table_data .propose {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 #detail {

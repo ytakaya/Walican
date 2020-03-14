@@ -1,0 +1,16 @@
+<script>
+  for (let i=0; i<document.getElementsByClassName("table_data").length; i++) {
+    document.getElementsByClassName("table_data")[i].onclick = function() {
+      const payId = document.getElementsByClassName("table_data")[i].id;
+      const elm = document.getElementById(payId);
+      document.getElementById("owner_confirm").innerHTML = 'オーナー： ' + elm.getElementsByClassName("owner")[0].innerHTML;
+      document.getElementById("amount_confirm").innerHTML = '金額： ' + elm.getElementsByClassName("amount")[0].innerHTML;
+      document.getElementById("propose_confirm").innerHTML = '目的： ' + elm.getElementsByClassName("propose")[0].innerHTML;
+      document.getElementById("popup").classList.remove("hidden");
+    }
+  }
+
+  document.getElementById("back_button").onclick = function() {
+    document.getElementById("popup").classList.add("hidden");
+  }
+</script>

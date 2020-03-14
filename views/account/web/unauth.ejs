@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="/stylesheets/account/unauth.css" type="text/css">
 </head>
 <body>
+  <div id="popup" class="hidden">
+    <div id="modal">
+      <ul>
+        <li><button id="back_button">戻る</button></li>
+        <li><span id="owner_confirm"></span></li>
+        <li><span id="amount_confirm"></span></li>
+        <li><span id="propose_confirm"></span></li>
+        <li><a href="#">承認する</a></li>
+      </ul>
+    </div>
+  </div>
 
   <%- include("../../share/header.ejs") %>
 
@@ -23,12 +34,12 @@
         <tr id="table_header">
           <td id="owner">オーナー</td>
           <td id="amount">金額</td>
-          <td id="time">目的</td>
+          <td id="propose">目的</td>
           <td id="detail"></td>
         </tr>
         <% waitings.forEach(waiting => { %>
-          <tr class="table_data">
-            <td id="owner"><%= waiting.parent %></td>
+          <tr class="table_data" id="<%= waiting.payments_id %>">
+            <td class="owner"><%= waiting.parent %></td>
             <% if (waiting.method == 'borrow') { %>
               <td class="amount"><%= waiting.amount %> 円</td>
             <% } else { %>
@@ -43,5 +54,6 @@
   </div>
 
   <%- include("../../share/menu_script.ejs") %>
+  <%- include("../../share/unauth_script.ejs") %>
 </body>
 </html>
