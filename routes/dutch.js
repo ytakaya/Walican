@@ -5,7 +5,6 @@ const uuid = require('uuid/v1');
 const pay = require('../src/pay/index');
 const db_logics = require('../src/utils/dbs/logics');
 const rate = require('../src/utils/rate/index');
-const date = require('../src/utils/date');
 
 
 router.get("/", (req, res) => {
@@ -89,7 +88,7 @@ router.post("/regist", (req, res) => {
       status: "auth_pending"
     }
     if (req.body.newData == 'yes')
-      query.date = date.getDate()
+      query.date = new Date();
 
     db_logics.updatePayments(query);
     db_logics.insertWaitings(waiting_docs);

@@ -1,4 +1,4 @@
-exports.getDate = () => {
+exports.formatDate = () => {
   const date = new Date();
   let format = 'YYYY-MM-DD HH:MM'
   format = format.replace(/YYYY/, date.getFullYear());
