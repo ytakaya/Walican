@@ -4,6 +4,7 @@ const { authorize, userInGroup } = require("../../lib/security/accountcontrol");
 const db_logics = require('../../src/utils/dbs/logics');
 const pay_method = require('../../config/app.config').pay_method;
 const summary_logics = require('../../src/summary/index');
+const auth_logics = require('../../src/auth/index');
 
 router.get("/user", authorize(), (req, res) => {
   const docs = {};
@@ -97,8 +98,13 @@ router.get("/unauth", userInGroup(), (req, res) => {
 
 router.post("/auth", userInGroup(), (req, res) => {
   const group_id = url.parse(req.url, true).query.groupId;
-  console.log(req.body)
-  res.redirect('/account/unauth?groupId=' + group_id);
+  const payId = req.body.payId;
+  auth_logics.authUserByPayId(req.user.id, payId).then(() => {
+    res.redirect('/account/unauth?groupId=' + group_id);
+  }).catch(err => {
+    console.log(err);
+    res.redirect('/account/unauth?groupId=' + group_id);
+  })
 })
 
 module.exports = router;
