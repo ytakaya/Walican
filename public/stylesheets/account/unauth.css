@@ -18,7 +18,11 @@
   border-radius: 10%;
 }
 
-#modal ul li button {
+#payments_id {
+  display: none;
+}
+
+#modal ul li a {
   position: absolute;
   left: 0;
   top: 0;
@@ -48,7 +52,7 @@
   font-weight: bold;
 }
 
-#modal ul li a {
+#submit {
   border: 2px solid gray;
   background-color: rgb(0, 193, 40);
   border-radius: 20%;
@@ -58,6 +62,10 @@
   width: auto;
   height: 60px;
   padding: 15px;
+}
+
+#submit:hover {
+  cursor: pointer;
 }
 
 /* ========================================

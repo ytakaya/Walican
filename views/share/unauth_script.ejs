@@ -3,6 +3,7 @@
     document.getElementsByClassName("table_data")[i].onclick = function() {
       const payId = document.getElementsByClassName("table_data")[i].id;
       const elm = document.getElementById(payId);
+      document.getElementById("payments_id").value = payId;
       document.getElementById("owner_confirm").innerHTML = 'オーナー： ' + elm.getElementsByClassName("owner")[0].innerHTML;
       document.getElementById("amount_confirm").innerHTML = '金額： ' + elm.getElementsByClassName("amount")[0].innerHTML;
       document.getElementById("propose_confirm").innerHTML = '目的： ' + elm.getElementsByClassName("propose")[0].innerHTML;

@@ -85,9 +85,20 @@ router.get("/unauth", userInGroup(), (req, res) => {
       users.forEach(u => {
         user_info[u.id] = {name: u.name, img: u.img}
       })
-      res.render('./account/web/unauth.ejs', {waitings: waitings, user_info: user_info});
+      const docs = {
+        waitings: waitings, 
+        user_info: user_info,
+        group_id: group_id
+      }
+      res.render('./account/web/unauth.ejs', docs);
     })
   })
+})
+
+router.post("/auth", userInGroup(), (req, res) => {
+  const group_id = url.parse(req.url, true).query.groupId;
+  console.log(req.body)
+  res.redirect('/account/unauth?groupId=' + group_id);
 })
 
 module.exports = router;

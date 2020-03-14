@@ -12,13 +12,16 @@
 <body>
   <div id="popup" class="hidden">
     <div id="modal">
-      <ul>
-        <li><button id="back_button">戻る</button></li>
-        <li><span id="owner_confirm"></span></li>
-        <li><span id="amount_confirm"></span></li>
-        <li><span id="propose_confirm"></span></li>
-        <li><a href="#">承認する</a></li>
-      </ul>
+      <form method="POST" action="/account/auth?groupId=<%= group_id %>">
+        <input id="payments_id" type="text" name="payId">
+        <ul>
+          <li><a id="back_button">戻る</a></li>
+          <li><span id="owner_confirm"></span></li>
+          <li><span id="amount_confirm"></span></li>
+          <li><span id="propose_confirm"></span></li>
+          <li><input id="submit" type="submit" value="承認する"></li>
+        </ul>
+      </form>
     </div>
   </div>
 
