@@ -116,4 +116,11 @@ router.post("/auth", userInGroup(), (req, res) => {
   })
 })
 
+router.post("/cancel", (req, res) => {
+  const payId = req.body.payId;
+  const parent = req.body.parent;
+  console.log(payId, parent)
+  res.send('ok')
+})
+
 module.exports = router;
