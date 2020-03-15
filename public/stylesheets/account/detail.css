@@ -132,3 +132,68 @@
   color: white;
   background-color: red;
 }
+
+/* ========================================
+    popup
+========================================= */
+#cancel_box {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#cancel_modal {
+  position: fixed;
+  width: 70vw;
+  height: 30vh;
+  background-color: #fff;
+  margin: 35vh 15vw;
+  border: solid 1px gray;
+  border-radius: 10%;
+}
+
+#cancel_modal ul li {
+  height: 15vh;
+  text-align: center;
+  list-style: none;
+}
+
+#cancel_modal ul li span {
+  line-height: 15vh;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#modal-form {
+  width: 50vw;
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-button {
+  border: 2px solid gray;
+  border-radius: 20%;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  width: auto;
+  height: 60px;
+  padding: 15px;
+}
+
+.modal-button:hover {
+  cursor: pointer;
+}
+
+#left-button {
+  float: left;
+  background-color: rgb(0, 193, 40);
+}
+
+#right-button {
+  float:right;
+  padding: 0 15px;
+  line-height: 60px;
+  background-color: gray;
+}

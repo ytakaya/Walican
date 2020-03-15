@@ -10,6 +10,20 @@
   <link rel="stylesheet" href="/stylesheets/account/detail.css" type="text/css">
 </head>
 <body>
+  <div id="cancel_box" class="hidden">
+    <div id="cancel_modal">
+      <ul>
+        <li id="conf-text"><span>本当にキャンセルしますか？</span></li>
+        <li id="modal-form">
+          <form method="POST" action="#">
+            <input class="modal-button" id="left-button" type="submit" value="はい">
+          </form>
+          <a class="modal-button" id="right-button" href="#">やめる</a>
+          <div class="cf"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <%- include("../../share/header.ejs") %>
 
@@ -43,14 +57,7 @@
     </div>
 
     <% if (_locals.user.id == parent.id) { %>
-      <div id="cancel_box">
-        <div id="cancel_modal" class="hidden">
-          <form method="POST" action="#">
-            <input type="submit" value="はい">
-          </form>
-        </div>
-        <a id="cancel" href="#">キャンセル</a>
-      </div>
+      <a id="cancel" href="#">キャンセル</a>
     <% } %>
 
     <div id="users">
