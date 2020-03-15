@@ -26,3 +26,10 @@ li:last-child {
   width: 40vw;
   border: 1px solid gray;
 }
+
+#usage img {
+  display: block;
+  margin: 10px auto;
+  width: 60vw;
+  border: 1px solid gray;
+}
