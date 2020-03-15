@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const url = require('url');
-const { authorize, userInGroup } = require("../../lib/security/accountcontrol");
+const { authorize, userInGroup, isParentUser } = require("../../lib/security/accountcontrol");
 const db_logics = require('../../src/utils/dbs/logics');
 const pay_method = require('../../config/app.config').pay_method;
 const summary_logics = require('../../src/summary/index');
@@ -116,9 +116,8 @@ router.post("/auth", userInGroup(), (req, res) => {
   })
 })
 
-router.post("/cancel", (req, res) => {
+router.post("/cancel", isParentUser(), (req, res) => {
   const payId = req.body.payId;
-  const parent = req.body.parent;
   const group_id = req.body.group_id;
   db_logics.cancelAuth(payId).then(promises => {
     Promise.all(promises).then(() => {
