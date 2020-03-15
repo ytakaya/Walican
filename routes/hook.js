@@ -93,7 +93,7 @@ async function getCommand(ev) {
     return rate.rateReply(client, ev);
   }
   else if (ev.message.text == '/host') {
-    replyMessageWithToken(ev.replyToken, HOST_URL);
+    replyMessageWithToken(ev.replyToken, HOST_URL + '/account/user');
     return;
   }
 }
