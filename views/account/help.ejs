@@ -3,17 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walican | detail</title>
+  <title>Walican | help</title>
   <link rel="stylesheet" href="/stylesheets/share/init.css" type="text/css">
   <link rel="stylesheet" href="/stylesheets/share/util.css" type="text/css">
   <link rel="stylesheet" href="/stylesheets/share/header.css" type="text/css">
-  <link rel="stylesheet" href="/stylesheets/account/detail.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/account/help.css" type="text/css">
 </head>
 <body>
 
   <%- include("../share/header.ejs") %>
 
   <div id="main">
+    <h2>何のためのアプリ？</h2>
+    <ul id="what">
+      <li><p>グループ間での割り勘、お金の貸し借りを管理するためのアプリです。</p></li>
+      <li><p>LINEのグループと連携して使うことができます。</p></li>
+    </ul>
+
+    <h2>準備</h2>
+    <ul id="prepare">
+      <li><p>LINEアカウントを持っている必要があります。</p></li>
+      <li><p>LINEの友達とグループを作りWalicanを招待してください。</p></li>
+      <li>
+        <p>グループのメンバーはWalicanを友達に追加してください。</p>
+        <img src="/images/walicanQR.png" alt="QR code">
+      </li>
+    </ul>
+
+    <h2>使い方</h2>
+    <ul id="usage">
+      <li>
+        グループをWalican appに登録します。<br>
+        LINEのグループ又はトークルームでコマンドを入力。<br>
+        コマンド： /init ＜グループ名＞
+      </li>
+      <li>
+        ユーザーをWalican appに登録します。<br>
+        LINEのグループ又はトークルームでコマンドを入力。<br>
+        コマンド： /connect
+      </li>
+      <li>
+        お金の貸し借りWalican appに登録します。<br>
+        コマンド： /connect <br>
+      </li>
+    </ul>
   </div>
 
   <%- include("../share/menu_script.ejs") %>
