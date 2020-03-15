@@ -119,3 +119,16 @@
 .doing {
   background-color: rgb(58, 189, 193);
 }
+
+#cancel {
+  width: 30vw;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid gray;
+  color: white;
+  background-color: red;
+}

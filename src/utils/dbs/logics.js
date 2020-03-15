@@ -167,12 +167,16 @@ exports.getUserByUserId = (user_id) => {
       db.collection("users").findOne({
         user_id: user_id
       }).then((user) => {
-        const user_info = {
-          id: user.user_id,
-          name: user.user_name,
-          img: user.img,
+        if (user != null) {
+          const user_info = {
+            id: user.user_id,
+            name: user.user_name,
+            img: user.img,
+          }
+          resolve(user_info);
+        } else {
+          resolve(null);
         }
-        resolve(user_info);
       })
     })
   })

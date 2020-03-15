@@ -42,6 +42,17 @@
       </div>
     </div>
 
+    <% if (_locals.user.id == parent.id) { %>
+      <div id="cancel_box">
+        <div id="cancel_modal" class="hidden">
+          <form method="POST" action="#">
+            <input type="submit" value="はい">
+          </form>
+        </div>
+        <a id="cancel" href="#">キャンセル</a>
+      </div>
+    <% } %>
+
     <div id="users">
       <span>メンバー</span>
       <ul>
@@ -62,5 +73,6 @@
   </div>
 
   <%- include("../../share/menu_script.ejs") %>
+  <%- include("../../share/cancel_script.ejs") %>
 </body>
 </html>
