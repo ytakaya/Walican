@@ -26,16 +26,16 @@ router.post('/', line.middleware(config), (req, res) => {
       replyMessageWithToken(ev.replyToken, `グループに招待して使ってください`);
       return;
     }
-  //   promises.push(
-  //     getCommand(ev)
-  //   );
+    promises.push(
+      getCommand(ev)
+    );
 
     getCommand(ev)
       .catch(err => {
         console.log(err);
       })
   }
-  // Promise.all(promises).then(console.log("pass"));
+  Promise.all(promises).catch(err => {console.log(err)});
 });
 
 function replyMessageWithToken(replyToken, message) {
