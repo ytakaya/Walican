@@ -119,8 +119,14 @@ router.post("/auth", userInGroup(), (req, res) => {
 router.post("/cancel", (req, res) => {
   const payId = req.body.payId;
   const parent = req.body.parent;
-  console.log(payId, parent)
-  res.send('ok')
+  const group_id = req.body.group_id;
+  db_logics.cancelAuth(payId).then(promises => {
+    Promise.all(promises).then(() => {
+      res.redirect('/account/history?groupId=' + group_id);
+    }).catch(err => {
+      console.log(err);
+    })
+  })
 })
 
 module.exports = router;

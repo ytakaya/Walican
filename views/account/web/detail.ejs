@@ -18,6 +18,7 @@
           <form method="POST" action="/account/cancel">
             <input type="text" name="payId" value="<%= payment.payments_id %>" class="hidden">
             <input type="text" name="parent" value="<%= parent.id %>" class="hidden">
+            <input type="text" name="group_id" value="<%= group_id %>" class="hidden">
             <input class="modal-button" id="left-button" type="submit" value="はい">
           </form>
           <a class="modal-button" id="right-button" href="#">やめる</a>

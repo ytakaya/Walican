@@ -1,5 +1,6 @@
 const {CONNECTION_URL, DATABASE, OPTIONS} = require("../../../config/mongodb.config");
 const MongoClient = require("mongodb").MongoClient;
+const async = require("async");
 
 exports.insertPayments = function(parent_user, group_id, payment_id) {
   MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
@@ -500,6 +501,98 @@ exports.getWaitingsList = (user_id, group_id) => {
           resolve(payments);
         })
       });
+    })
+  })
+}
+
+const cancelWaiting = function(db, query) {
+  return new Promise(resolve => {
+    db.collection("waitings").deleteOne(
+      query,
+    ).catch(() => {
+      console.log(error);
+    }).then(() => {
+      resolve(true);
+    });
+  })
+}
+
+const cancelPayment = function(db, query) {
+  return new Promise(resolve => {
+    db.collection("payments").deleteOne(
+      query,
+    ).catch(() => {
+      console.log(error);
+    }).then(() => {
+      resolve(true);
+    });
+  })
+}
+
+const cancelSummary = function(db, query) {
+  return new Promise(resolve => {
+    db.collection("summary").deleteOne(
+      query,
+    ).catch(() => {
+      console.log(error);
+    }).then(() => {
+      resolve(true);
+    });
+  })
+}
+
+exports.cancelAuth = function(pay_id) {
+  return new Promise(resolve => {
+    MongoClient.connect(CONNECTION_URL, OPTIONS, (error, client) => {
+      const db = client.db(DATABASE);
+      async.parallel([
+        function(cb) {
+          const payment_promises = [];
+          db.collection("payments").find({
+            payments_id: pay_id,
+          }).toArray((error, payments) => {
+            if (payments==null) cb(null);
+            else {
+              payments.forEach(payment => {
+                payment_promises.push(cancelPayment(db, payment));
+              })
+              cb(null, ...payment_promises);
+            }
+          });
+        },
+        function(cb) {
+          const waiting_promises = [];
+          db.collection("waitings").find({
+            payments_id: pay_id,
+          }).toArray((error, waitings) => {
+            if (waitings==null) cb(null);
+            else {
+              waitings.forEach(waiting => {
+                waiting_promises.push(cancelWaiting(db, waiting));
+              })
+              cb(null, ...waiting_promises);
+            }
+          });
+        },
+        function(cb) {
+          const summary_promises = [];
+          db.collection("payments").find({
+            payments_id: pay_id,
+          }).toArray((error, summaries) => {
+            if (summaries==null) cb(null);
+            else {
+              summaries.forEach(summary => {
+                summary_promises.push(cancelSummary(db, summary));
+              })
+              cb(null, ...summary_promises);
+            }
+          });
+        }
+      ], function(err, promises) {
+        if (err) throw err;
+        client.close();
+        resolve(promises);
+      })
     })
   })
 }
