@@ -22,7 +22,15 @@
       <ul>
         <li><a href="/account/user">ユーザーページ</a></li>
         <li><a href="#">認証依頼</a></li>
+        <li><a href="/account/help">ヘルプ</a></li>
         <li><a href="/oauth/logout">ログアウト</a></li>
+      </ul>
+    </div>
+  <% } else { %>
+    <div id="global_menu" class="hidden">
+      <ul>
+        <li><a href="/">ログイン</a></li>
+        <li><a href="/account/help">ヘルプ</a></li>
       </ul>
     </div>
   <% } %>
