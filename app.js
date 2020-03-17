@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(flash());
 app.use(...accountcontrol.initialize());
 
-app.get('/', authorize('readWrite'), (req, res) => res.send('welcome walican'))
+app.get('/', (req, res) => res.redirect('/account/user'))
 app.use("/dutch/", require("./routes/dutch.js"));
 app.use("/borrow/", require("./routes/borrow.js"));
 app.use("/complete/", require("./routes/complete.js"));
