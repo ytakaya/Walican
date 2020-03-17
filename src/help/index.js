@@ -9,6 +9,7 @@ exports.HelpMessage = function(client, ev) {
 /auth: 貸し借りを認証\n\
 /summary: 現在の貸し借り状況を表示\n\
 /rate: 為替レートの表示\n\
-/help: ヘルプメッセージの表示"
+/help: ヘルプメッセージの表示\n\
+/host: webページのURLを表示"
   })
 }
