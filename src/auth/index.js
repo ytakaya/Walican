@@ -13,6 +13,7 @@ exports.authUserByPayId = function(userId, payId) {
       else {
         payment.children[userId] = true;
         if (Object.values(payment.children).indexOf(false) == -1) {
+          payment.status = 'done';
           //認証完了の処理
           db_logics.insertSummary(
             payment.payments_id, 
@@ -21,10 +22,10 @@ exports.authUserByPayId = function(userId, payId) {
             payment.amount, 
             payment.method,
             Object.keys(payment.children))
-          db_logics.updatePayments(payId, {children: payment.children, status: 'done'});
+          db_logics.updatePayments(payment);
           resolve('authComplete');
         } else {
-          db_logics.updatePayments(payId, {children: payment.children});
+          db_logics.updatePayments(payment);
           resolve('updated'); 
         }
       }
